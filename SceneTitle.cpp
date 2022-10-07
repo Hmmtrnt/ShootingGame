@@ -17,10 +17,7 @@ SceneBase* SceneTitle::update()
 		// Main‚ÉØ‚è‘Ö‚¦
 		return(new SceneMain);
 	}
-	else if (padState & PAD_INPUT_2)
-	{
-		return (new SceneResult);
-	}
+	
 	return this;
 }
 

@@ -2,6 +2,7 @@
 
 #include "SceneMain.h"
 #include "SceneTitle.h"
+#include "SceneResult.h"
 
 void SceneMain::init()
 {
@@ -11,9 +12,9 @@ void SceneMain::init()
 SceneBase* SceneMain::update()
 {
 	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-	if (padState & PAD_INPUT_3)
+	if (padState & PAD_INPUT_2)
 	{
-		return (new SceneTitle);
+		return (new SceneResult);
 	}
 	return this;
 }
