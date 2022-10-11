@@ -8,9 +8,8 @@ namespace
 {
 	// Y方向の速度
 	constexpr float kSpeedMaxY = 8.0f;
-	constexpr float kAcc = 0.4f;
 	// ショットの発射間隔
-	constexpr int kShotInterval = 30;
+	constexpr int kShotInterval = 60;
 }
 
 Player::Player()
@@ -50,8 +49,25 @@ void Player::update()
 		{
 			if (m_pMain->createShotNormal(getPos()))
 			{
-
+				m_shotInterval = kShotInterval;
 			}
+		}
+	}
+
+	if (padState & PAD_INPUT_UP)
+	{
+		m_pos.y -= kSpeedMaxY;
+		if (m_pos.y < 0)
+		{
+			m_pos.y = 0;
+		}
+	}
+	else if (padState & PAD_INPUT_DOWN)
+	{
+		m_pos.y += kSpeedMaxY;
+		if (m_pos.y > Game::kScreenHeight)
+		{
+			m_pos.y = Game::kScreenHeight;
 		}
 	}
 }
@@ -59,5 +75,5 @@ void Player::update()
 void Player::draw()
 {
 	// 仮自機
-	DrawCircle(m_pos.x, m_pos.y, 50, GetColor(255, 255, 255), true);
+	DrawCircle(m_pos.x, m_pos.y, 30, GetColor(255, 255, 255), true);
 }

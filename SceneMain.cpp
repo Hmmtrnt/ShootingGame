@@ -71,8 +71,14 @@ SceneBase* SceneMain::update()
 		pShot->update();
 		if (!pShot->isExist())
 		{
+			delete pShot;
+			pShot = nullptr;
 
+			// vector‚Ì—v‘fíœ
+			it = m_pShotVt.erase(it);
+			continue;
 		}
+		it++;
 	}
 
 	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
@@ -85,7 +91,13 @@ SceneBase* SceneMain::update()
 
 void SceneMain::draw()
 {
-	
+	m_player.draw();
+	for (auto& pShot : m_pShotVt)
+	{
+		if (!pShot) continue;
+		pShot->draw();
+	}
+
 	//DrawString(0, 0, "ƒƒCƒ“‰æ–Ê", GetColor(255, 255, 255));
 }
 

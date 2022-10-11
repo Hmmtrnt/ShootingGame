@@ -4,7 +4,7 @@
 namespace
 {
 	// 弾のスピード
-	constexpr float kShotSpeed = 10.0f;
+	constexpr float kShotSpeed = 25.0f;
 }
 
 void ShotNormal::start(Vec2 pos)
