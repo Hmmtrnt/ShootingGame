@@ -31,6 +31,11 @@ public:
 private:
 	//グラフィックハンドル
 	int m_handle;
+	// 弾の発射間隔
+	int m_shotInterval;
+
+	// 自機の半径
+	int m_radius;
 
 	// SceneMainのポインタ
 	SceneMain* m_pMain;
