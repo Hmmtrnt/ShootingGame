@@ -24,6 +24,7 @@ SceneMain::SceneMain()
 {
 	m_hPlayerGraphic = -1;
 	m_hShotGraphic = -1;
+	m_hEnemyGraphic = -1;
 }
 
 SceneMain::~SceneMain()

@@ -29,6 +29,8 @@ private:
 	// プレイヤーのグラフィックハンドル
 	int m_hPlayerGraphic;
 	int m_hShotGraphic;
+	// 敵のグラフィックハンドル
+	int m_hEnemyGraphic;
 
 	// プレイヤー
 	Player m_player;
