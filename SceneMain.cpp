@@ -34,13 +34,23 @@ SceneMain::~SceneMain()
 
 void SceneMain::init()
 {
-	m_pos.x = 100.0f;
-	m_pos.y = Game::kScreenHeight / 2;
-	m_hPlayerGraphic = DrawCircle(m_pos.x, m_pos.y, 50, GetColor(255, 255, 255), true);
-	m_hShotGraphic = DrawOval(m_pos.x, m_pos.y, kRadiusX, kRadiusY, GetColor(255, 255, 255), true);
+	// 表示位置
+	m_posPlayer.x = 100.0f;
+	m_posPlayer.y = Game::kScreenHeight / 2;
+	m_posEnemy.x = 540.0f;
+	m_posEnemy.y = Game::kScreenWidth / 2;
+
+	m_hPlayerGraphic = DrawCircle(m_posPlayer.x, m_posPlayer.y, 50, GetColor(255, 255, 255), true);
+	m_hShotGraphic = DrawOval(m_posPlayer.x, m_posPlayer.y, kRadiusX, kRadiusY, GetColor(255, 255, 255), true);
+	m_hEnemyGraphic = DrawBox(m_posEnemy.x, m_posEnemy.y, m_posEnemy.x + 30, m_posEnemy.y + 30, GetColor(255, 255, 255), true);
+
 	m_player.setHandle(m_hPlayerGraphic);
 	m_player.init();
 	m_player.setMain(this);
+
+	m_enemy.setHandle(m_hEnemyGraphic);
+	m_enemy.init();
+	m_enemy.setMain(this);
 }
 
 void SceneMain::end()
@@ -58,6 +68,7 @@ void SceneMain::end()
 
 SceneBase* SceneMain::update()
 {
+	m_enemy.update();
 	m_player.update();
 
 	std::vector<ShotBase*>::iterator it = m_pShotVt.begin();
@@ -92,6 +103,7 @@ SceneBase* SceneMain::update()
 
 void SceneMain::draw()
 {
+	m_enemy.draw();
 	m_player.draw();
 	for (auto& pShot : m_pShotVt)
 	{
@@ -99,7 +111,7 @@ void SceneMain::draw()
 		pShot->draw();
 	}
 
-	//DrawString(0, 0, "メイン画面", GetColor(255, 255, 255));
+	DrawString(0, 0, "メイン画面", GetColor(255, 255, 255));
 }
 
 bool SceneMain::createShotNormal(Vec2 pos)

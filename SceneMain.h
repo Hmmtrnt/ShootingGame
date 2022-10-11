@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include "Enemy.h"
 #include "player.h"
 #include "SceneBase.h"
 #include "ShotBase.h"
@@ -34,8 +35,11 @@ private:
 
 	// プレイヤー
 	Player m_player;
+	// エネミー
+	Enemy m_enemy;
 	// ショット
 	std::vector<ShotBase*>m_pShotVt;
 	// 表示位置
-	Vec2 m_pos;
+	Vec2 m_posPlayer;
+	Vec2 m_posEnemy;
 };

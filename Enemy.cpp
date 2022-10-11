@@ -5,15 +5,13 @@
 namespace
 {
 	// 敵のスピード
-	constexpr float kSpeedY = 15.0f;
-	// 敵の右下の頂点座標
-	constexpr int kBottomRightX = 50;
-	constexpr int kBottomRightY = 50;
+	constexpr float kSpeedY = 5.0f;
 }
 
 Enemy::Enemy()
 {
 	m_pMain = nullptr;
+	vecY = 0;
 }
 
 Enemy::~Enemy()
@@ -27,22 +25,24 @@ void Enemy::init()
 	m_pos.y = Game::kScreenWidth / 2;
 	m_vec.x = 0.0f;
 	m_vec.y = 0.0f;
+	vecY = kSpeedY;
 }
 
 void Enemy::update()
 {
-	m_pos.y -= kSpeedY;
+	m_pos.y += vecY;
 	if (m_pos.y < 0)
 	{
-		m_pos.y += kSpeedY;
+		vecY = kSpeedY;
 	}
-	else if (m_pos.y > Game::kScreenWidth)
+	if (m_pos.y > Game::kScreenHeight - 30)
 	{
-		m_pos.y -= kSpeedY;
+		vecY = -kSpeedY;
 	}
 }
 
 void Enemy::draw()
 {
-	DrawBox(m_pos.x, m_pos.y, kBottomRightX, kBottomRightY, GetColor(255, 255, 255), true);
+	DrawBox(m_pos.x, m_pos.y, m_pos.x + 30, m_pos.y + 30, GetColor(255, 255, 255), true);
+	//DrawString(0, 16, "座標:%d", GetColor(255, 255, 255));
 }

@@ -10,6 +10,8 @@ public:
 	Enemy();
 	virtual ~Enemy();
 
+	// グラフィックデータ設定
+	void setHandle(int handle) { m_handle = handle; }
 	// 敵の初期化
 	void init();
 	// SceneMainクラスのポインタ設定
@@ -23,6 +25,10 @@ public:
 	Vec2 getPos() const { return m_pos; }
 
 private:
+	// グラフィックハンドル
+	int m_handle;
+	//
+	int vecY;
 	// SceneMainのポインタ
 	SceneMain* m_pMain;
 
