@@ -94,10 +94,10 @@ SceneBase* SceneMain::update()
 	}
 
 	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-	/*if (padState & PAD_INPUT_2)
+	if (padState & PAD_INPUT_2)
 	{
 		return (new SceneResult);
-	}*/
+	}
 	return this;
 }
 

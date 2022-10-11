@@ -44,5 +44,4 @@ void Enemy::update()
 void Enemy::draw()
 {
 	DrawBox(m_pos.x, m_pos.y, m_pos.x + 30, m_pos.y + 30, GetColor(255, 255, 255), true);
-	//DrawString(0, 16, "ç¿ïW:%d", GetColor(255, 255, 255));
 }
