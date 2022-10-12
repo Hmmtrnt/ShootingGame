@@ -12,6 +12,7 @@ namespace
 Enemy::Enemy()
 {
 	m_pMain = nullptr;
+	m_isDead = false;
 	vecY = 0;
 }
 
@@ -46,44 +47,6 @@ void Enemy::update()
 
 void Enemy::draw()
 {
-
+	if (m_isDead)	return;
 	DrawBox(m_pos.x, m_pos.y, m_pos.x + m_colSize.x, m_pos.y + m_colSize.y, GetColor(255, 255, 255), true);
-}
-
-bool Enemy::isCol(ShotBase& shot)
-{
-	float shotLeft = shot.getPos().x;
-	float shotRight = /*shot.getPos().x + */shot.getSize().x * 2;
-	float shotTop = shot.getPos().y;
-	float shotBottom = /*shot.getPos().y + */shot.getSize().y * 2;
-
-	float enemyLeft = getPos().x;
-	float enemyRight = getPos().x + getColSize().x;
-	float enemyTop = getPos().y;
-	float enemyBottom = getPos().y + getColSize().y;
-
-	if (shotLeft > enemyRight)	return (new SceneResult);
-	if (shotRight < enemyLeft)	return (new SceneResult);
-	if (shotTop > enemyBottom)	return (new SceneResult);
-	if (shotBottom < enemyTop)	return (new SceneResult);
-	/*if (shotLeft > enemyRight)
-	{
-		DrawString(16, 16, "“–‚½‚è‚Ü‚µ‚½", GetColor(255, 255, 255));
-		return 0;
-	}
-	if (shotRight < enemyLeft)
-	{
-		DrawString(16, 16, "“–‚½‚è‚Ü‚µ‚½", GetColor(255, 255, 255));
-		return 0;
-	}
-	if (shotTop > enemyBottom)
-	{
-		DrawString(16, 16, "“–‚½‚è‚Ü‚µ‚½", GetColor(255, 255, 255));
-		return 0;
-	}
-	if (shotBottom < enemyTop)
-	{
-		DrawString(16, 16, "“–‚½‚è‚Ü‚µ‚½", GetColor(255, 255, 255));
-		return 0;
-	}*/
 }

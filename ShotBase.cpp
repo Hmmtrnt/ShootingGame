@@ -14,8 +14,8 @@ ShotBase::ShotBase()
 	m_pos.x = 0.0f;
 	m_pos.y = 0.0f;
 
-	m_size.x = 7.0f;
-	m_size.y = 4.0f;
+	m_size.x = 10.0f;
+	m_size.y = 10.0f;
 
 	m_vec.x = 0.0f;
 	m_vec.y = 0.0f;
@@ -42,5 +42,6 @@ void ShotBase::update()
 void ShotBase::draw()
 {
 	if (!m_isExist) return;
-	DrawOval(m_pos.x, m_pos.y, m_size.x, m_size.y, GetColor(255, 255, 255), true);
+	//DrawOval(m_pos.x, m_pos.y, m_size.x, m_size.y, GetColor(255, 255, 255), true);
+	DrawBox(m_pos.x, m_pos.y, m_pos.x + m_size.x, m_pos.y + m_size.y, GetColor(255, 255, 255), true);
 }

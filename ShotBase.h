@@ -26,7 +26,7 @@ public:
 protected:
 	// •\¦ˆÊ’u
 	Vec2 m_pos;
-	// ’e‚Ì”¼Œa
+	// ’e‚Ì•
 	Vec2 m_size;
 	// ˆÚ“®
 	Vec2 m_vec;

@@ -26,6 +26,9 @@ public:
 
 	// 弾の生成
 	bool createShotNormal(Vec2 pos);
+	// エネミーとの衝突判定
+	virtual bool isCol(ShotBase& shot, Enemy& enemy);
+
 private:
 	// プレイヤーのグラフィックハンドル
 	int m_hPlayerGraphic;
@@ -39,7 +42,15 @@ private:
 	Enemy m_enemy;
 	// ショット
 	std::vector<ShotBase*>m_pShotVt;
-	// 表示位置
+	/*表示位置*/
+	// プレイヤー
 	Vec2 m_posPlayer;
+	// 弾
+	Vec2 m_posShot;
+	// 弾の幅
+	Vec2 m_sizeShot;
+	// 敵
 	Vec2 m_posEnemy;
+	// 敵の幅
+	Vec2 m_sizeEnemy;
 };

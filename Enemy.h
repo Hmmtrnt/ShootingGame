@@ -21,14 +21,14 @@ public:
 	void update();
 	// 描画
 	void draw();
-
-	// エネミーとの衝突判定
-	bool isCol(ShotBase& shot);
+	// 敵の死んだ座標
+	bool isDead() const { return m_isDead; }
 
 	// 情報取得
 	Vec2 getPos() const { return m_pos; }
 	// サイズの取得
 	Vec2 getColSize() const { return m_colSize; }
+
 
 private:
 
@@ -36,6 +36,9 @@ private:
 	int m_handle;
 	//
 	int vecY;
+
+	// 生死
+	bool m_isDead;
 
 	// SceneMainのポインタ
 	SceneMain* m_pMain;

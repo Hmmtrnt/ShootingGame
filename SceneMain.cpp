@@ -34,17 +34,28 @@ SceneMain::~SceneMain()
 
 void SceneMain::init()
 {
-	// •\Ž¦ˆÊ’u
+	/*•\Ž¦ˆÊ’u*/
+	// ƒvƒŒƒCƒ„[
 	m_posPlayer.x = 100.0f;
 	m_posPlayer.y = Game::kScreenHeight / 2;
+	// ’e
+	m_posShot.x = 0.0f;
+	m_posShot.y = 0.0f;
+	// ’e‚Ì•
+	m_sizeShot.x = 10.0f;
+	m_sizeShot.y = 10.0f;
+	// “G
 	m_posEnemy.x = 540.0f;
 	m_posEnemy.y = Game::kScreenWidth / 2;
+	// “G‚Ì•
+	m_sizeEnemy.x = 30.0f;
+	m_sizeEnemy.y = 30.0f;
 	// ƒvƒŒƒCƒ„[
 	m_hPlayerGraphic = DrawCircle(m_posPlayer.x, m_posPlayer.y, 50, GetColor(255, 255, 255), true);
 	// ’e
-	m_hShotGraphic = DrawOval(m_posPlayer.x, m_posPlayer.y, kRadiusX, kRadiusY, GetColor(255, 255, 255), true);
+	m_hShotGraphic = DrawBox(m_posShot.x, m_posShot.y, m_posShot.x + m_sizeShot.x, m_posShot.y + m_sizeShot.y, GetColor(255, 255, 255), true);
 	// “G
-	m_hEnemyGraphic = DrawBox(m_posEnemy.x, m_posEnemy.y, m_posEnemy.x + 30, m_posEnemy.y + 30, GetColor(255, 255, 255), true);
+	m_hEnemyGraphic = DrawBox(m_posEnemy.x, m_posEnemy.y, m_posEnemy.x + m_sizeEnemy.x, m_posEnemy.y + m_sizeEnemy.x, GetColor(255, 255, 255), true);
 
 	m_player.setHandle(m_hPlayerGraphic);
 	m_player.init();
@@ -125,5 +136,40 @@ bool SceneMain::createShotNormal(Vec2 pos)
 	pShot->start(pos);
 	m_pShotVt.push_back(pShot);
 
+	return true;
+}
+
+bool SceneMain::isCol(ShotBase& shot, Enemy& enemy)
+{
+	/*float shotLeft = shot.getPos().x;
+	float shotRight = shot.getPos().x + shot.getSize().x * 2;
+	float shotTop = shot.getPos().y;
+	float shotBottom = shot.getPos().y + shot.getSize().y * 2;
+
+	float enemyLeft = enemy.getPos().x;
+	float enemyRight = enemy.getPos().x + enemy.getColSize().x;
+	float enemyTop = enemy.getPos().y;
+	float enemyBottom = enemy.getPos().y + enemy.getColSize().y;
+
+	if (shotLeft < enemyRight)	return false;
+	if (shotRight > enemyLeft)	return false;
+	if (shotTop < enemyBottom)	return false;
+	if (shotBottom > enemyTop)	return false;
+	return true;*/
+
+	float shotLeft = m_posShot.x;
+	float shotRight = m_posShot.x + m_sizeShot.x;
+	float shotTop = m_posShot.y;
+	float shotBottom = m_posShot.y + m_sizeShot.y;
+
+	float enemyLeft = m_posEnemy.x;
+	float enemyRight = m_posEnemy.x + m_sizeEnemy.x;
+	float enemyTop = m_posEnemy.y;
+	float enemyBottom = m_posEnemy.y + m_sizeEnemy.y;
+
+	if (shotLeft < enemyRight)	return false;
+	if (shotRight > enemyLeft)	return false;
+	if (shotTop < enemyBottom)	return false;
+	if (shotBottom > enemyTop)	return false;
 	return true;
 }
