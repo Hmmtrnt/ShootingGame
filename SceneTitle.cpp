@@ -1,5 +1,5 @@
 #include "DxLib.h"
-
+#include "game.h"
 #include "SceneTitle.h"
 #include "SceneMain.h"
 #include "SceneResult.h"
@@ -23,5 +23,5 @@ SceneBase* SceneTitle::update()
 
 void SceneTitle::draw()
 {
-	DrawString(0, 0, "タイトル画面", GetColor(255, 255, 255));
+	DrawString(Game::kScreenWidth / 2 - 100, Game::kScreenHeight / 2 - 50, "やつを打ち抜け！", GetColor(255, 255, 255));
 }

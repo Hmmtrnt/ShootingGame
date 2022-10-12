@@ -25,7 +25,7 @@ public:
 	Vec2 getSize() const { return m_size; }
 
 	// エネミーとの衝突判定
-	bool isCol(Enemy& enemy);
+	//bool isCol(Enemy& enemy);
 
 protected:
 	// 表示位置
