@@ -19,9 +19,15 @@ public:
 	// ‘¶İ‚·‚é‚©‚Ç‚¤‚©
 	bool isExist() const { return m_isExist; }
 
+	// î•ñæ“¾
+	Vec2 getPos() const { return m_pos; }
+	Vec2 getSize() const { return m_size; }
+
 protected:
 	// •\¦ˆÊ’u
 	Vec2 m_pos;
+	// ’e‚Ì”¼Œa
+	Vec2 m_size;
 	// ˆÚ“®
 	Vec2 m_vec;
 	// ‘¶İ‚·‚é‚©‚Ç‚¤‚©

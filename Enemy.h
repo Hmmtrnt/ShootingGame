@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ShotBase.h"
 #include "Vec2.h"
 
 class SceneMain;
@@ -21,14 +22,21 @@ public:
 	// 描画
 	void draw();
 
+	// エネミーとの衝突判定
+	bool isCol(ShotBase& shot);
+
 	// 情報取得
 	Vec2 getPos() const { return m_pos; }
+	// サイズの取得
+	Vec2 getColSize() const { return m_colSize; }
 
 private:
+
 	// グラフィックハンドル
 	int m_handle;
 	//
 	int vecY;
+
 	// SceneMainのポインタ
 	SceneMain* m_pMain;
 
@@ -36,4 +44,6 @@ private:
 	Vec2 m_pos;
 	// 移動
 	Vec2 m_vec;
+	// 当たり判定の幅と高さ
+	Vec2 m_colSize;
 };

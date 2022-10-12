@@ -16,8 +16,8 @@ namespace
 	constexpr float kShotX = 0.0f;
 	constexpr float kShotY = 0.0f;
 	// ‘È‰~Œ`‚Ì‚»‚ê‚¼‚ê‚Ì”¼Œa
-	constexpr int kRadiusX = 5;
-	constexpr int kRadiusY = 3;
+	constexpr int kRadiusX = 7;
+	constexpr int kRadiusY = 4;
 }
 
 SceneMain::SceneMain()
@@ -39,9 +39,11 @@ void SceneMain::init()
 	m_posPlayer.y = Game::kScreenHeight / 2;
 	m_posEnemy.x = 540.0f;
 	m_posEnemy.y = Game::kScreenWidth / 2;
-
+	// ƒvƒŒƒCƒ„[
 	m_hPlayerGraphic = DrawCircle(m_posPlayer.x, m_posPlayer.y, 50, GetColor(255, 255, 255), true);
+	// ’e
 	m_hShotGraphic = DrawOval(m_posPlayer.x, m_posPlayer.y, kRadiusX, kRadiusY, GetColor(255, 255, 255), true);
+	// “G
 	m_hEnemyGraphic = DrawBox(m_posEnemy.x, m_posEnemy.y, m_posEnemy.x + 30, m_posEnemy.y + 30, GetColor(255, 255, 255), true);
 
 	m_player.setHandle(m_hPlayerGraphic);
@@ -74,6 +76,7 @@ SceneBase* SceneMain::update()
 	std::vector<ShotBase*>::iterator it = m_pShotVt.begin();
 	while (it != m_pShotVt.end())
 	{
+		// ’e”­Ë‚µ‚½‚Ìˆ—
 		auto& pShot = (*it);
 		if (!pShot)
 		{
@@ -93,6 +96,7 @@ SceneBase* SceneMain::update()
 		it++;
 	}
 
+	// ƒV[ƒ“ˆÚ“®(—\’è‚Å‚Í“G‚É’e‚ª“–‚½‚Á‚½‚çƒŠƒUƒ‹ƒg)
 	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
 	if (padState & PAD_INPUT_2)
 	{

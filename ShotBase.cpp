@@ -5,14 +5,17 @@ namespace
 {
 	constexpr float kShotSpeed = 10.0f;
 	// ‘È‰~Œ`‚Ì‚»‚ê‚¼‚ê‚Ì”¼Œa
-	constexpr int kRadiusX = 5;
-	constexpr int kRadiusY = 3;
+	/*constexpr int kRadiusX = 7;
+	constexpr int kRadiusY = 4;*/
 }
 
 ShotBase::ShotBase()
 {
 	m_pos.x = 0.0f;
 	m_pos.y = 0.0f;
+
+	m_size.x = 7.0f;
+	m_size.y = 4.0f;
 
 	m_vec.x = 0.0f;
 	m_vec.y = 0.0f;
@@ -39,5 +42,5 @@ void ShotBase::update()
 void ShotBase::draw()
 {
 	if (!m_isExist) return;
-	DrawOval(m_pos.x, m_pos.y, kRadiusX, kRadiusY, GetColor(255, 255, 255), true);
+	DrawOval(m_pos.x, m_pos.y, m_size.x, m_size.y, GetColor(255, 255, 255), true);
 }
