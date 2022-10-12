@@ -1,5 +1,6 @@
 #pragma once
 #include "Vec2.h"
+#include "Enemy.h"
 
 class ShotBase
 {
@@ -22,6 +23,9 @@ public:
 	// 情報取得
 	Vec2 getPos() const { return m_pos; }
 	Vec2 getSize() const { return m_size; }
+
+	// エネミーとの衝突判定
+	bool isCol(Enemy& enemy);
 
 protected:
 	// 表示位置

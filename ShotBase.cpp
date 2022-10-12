@@ -45,3 +45,22 @@ void ShotBase::draw()
 	//DrawOval(m_pos.x, m_pos.y, m_size.x, m_size.y, GetColor(255, 255, 255), true);
 	DrawBox(m_pos.x, m_pos.y, m_pos.x + m_size.x, m_pos.y + m_size.y, GetColor(255, 255, 255), true);
 }
+
+bool ShotBase::isCol(Enemy& enemy)
+{
+	float shotLeft = getPos().x;
+	float shotRight = getPos().x + getSize().x;
+	float shotTop = getPos().y;
+	float shotBottom = getPos().y + getSize().y;
+
+	float enemyLeft = enemy.getPos().x;
+	float enemyRight = enemy.getPos().x + enemy.getColSize().x;
+	float enemyTop = enemy.getPos().y;
+	float enemyBottom = enemy.getPos().y + enemy.getColSize().y;
+
+	if (shotLeft < enemyRight)	return false;
+	if (shotRight > enemyLeft)	return false;
+	if (shotTop < enemyBottom)	return false;
+	if (shotBottom > enemyTop)	return false;
+	return true;
+}

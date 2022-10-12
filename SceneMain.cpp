@@ -138,38 +138,3 @@ bool SceneMain::createShotNormal(Vec2 pos)
 
 	return true;
 }
-
-bool SceneMain::isCol(ShotBase& shot, Enemy& enemy)
-{
-	/*float shotLeft = shot.getPos().x;
-	float shotRight = shot.getPos().x + shot.getSize().x * 2;
-	float shotTop = shot.getPos().y;
-	float shotBottom = shot.getPos().y + shot.getSize().y * 2;
-
-	float enemyLeft = enemy.getPos().x;
-	float enemyRight = enemy.getPos().x + enemy.getColSize().x;
-	float enemyTop = enemy.getPos().y;
-	float enemyBottom = enemy.getPos().y + enemy.getColSize().y;
-
-	if (shotLeft < enemyRight)	return false;
-	if (shotRight > enemyLeft)	return false;
-	if (shotTop < enemyBottom)	return false;
-	if (shotBottom > enemyTop)	return false;
-	return true;*/
-
-	float shotLeft = m_posShot.x;
-	float shotRight = m_posShot.x + m_sizeShot.x;
-	float shotTop = m_posShot.y;
-	float shotBottom = m_posShot.y + m_sizeShot.y;
-
-	float enemyLeft = m_posEnemy.x;
-	float enemyRight = m_posEnemy.x + m_sizeEnemy.x;
-	float enemyTop = m_posEnemy.y;
-	float enemyBottom = m_posEnemy.y + m_sizeEnemy.y;
-
-	if (shotLeft < enemyRight)	return false;
-	if (shotRight > enemyLeft)	return false;
-	if (shotTop < enemyBottom)	return false;
-	if (shotBottom > enemyTop)	return false;
-	return true;
-}

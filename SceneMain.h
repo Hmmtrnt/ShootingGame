@@ -26,8 +26,6 @@ public:
 
 	// 弾の生成
 	bool createShotNormal(Vec2 pos);
-	// エネミーとの衝突判定
-	virtual bool isCol(ShotBase& shot, Enemy& enemy);
 
 private:
 	// プレイヤーのグラフィックハンドル

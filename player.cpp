@@ -9,7 +9,7 @@ namespace
 	// Y方向の速度
 	constexpr float kSpeedMaxY = 8.0f;
 	// ショットの発射間隔
-	constexpr int kShotInterval = 60;
+	constexpr int kShotInterval = 120;
 }
 
 Player::Player()
