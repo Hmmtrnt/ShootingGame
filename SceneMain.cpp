@@ -84,12 +84,6 @@ SceneBase* SceneMain::update()
 	m_enemy.update();
 	m_player.update();
 
-	// “G‚Ì“–‚½‚è”»’è
-	if (m_enemy.isCol(m_shotNoraml))
-	{
-		m_enemy.setDead(true);
-	}
-
 	std::vector<ShotBase*>::iterator it = m_pShotVt.begin();
 	while (it != m_pShotVt.end())
 	{
@@ -101,11 +95,15 @@ SceneBase* SceneMain::update()
 			continue;
 		}
 		pShot->update();
+		// “G‚Ì“–‚½‚è”»’è
+		if (m_enemy.isCol(*pShot))
+		{
+			m_enemy.setDead(true);
+		}
 		if (!pShot->isExist())
 		{
 			delete pShot;
 			pShot = nullptr;
-
 			// vector‚Ì—v‘fíœ
 			it = m_pShotVt.erase(it);
 			continue;

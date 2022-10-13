@@ -4,7 +4,7 @@
 #include "Enemy.h"
 #include "player.h"
 #include "SceneBase.h"
-//#include "ShotBase.h"
+#include "ShotBase.h"
 #include "ShotNormal.h"
 
 class SceneMain : public SceneBase
@@ -39,10 +39,12 @@ private:
 	Player m_player;
 	// エネミー
 	Enemy m_enemy;
+	// ショットベース
+	ShotBase m_shotBase;
 	// ショットノーマル
-	ShotNoraml m_shotNoraml;
+	ShotNormal m_shotNormal;
 	// ショット
-	std::vector<ShotBase*>m_pShotVt;
+	std::vector<ShotBase*> m_pShotVt;
 	/*表示位置*/
 	// プレイヤー
 	Vec2 m_posPlayer;

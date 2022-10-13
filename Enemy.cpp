@@ -3,12 +3,7 @@
 #include "game.h"
 #include "SceneResult.h"
 //#include "ShotBase.h"
-
-namespace
-{
-	// 敵のスピード
-	constexpr float kSpeedY = 0.0f;
-}
+#include "ShotNormal.h"
 
 Enemy::Enemy()
 {
@@ -24,25 +19,31 @@ Enemy::~Enemy()
 
 void Enemy::init()
 {
+	srand(GetNowCount());
+	m_speedY = 25;
+	m_speedRand = GetRand(25) + 1;
 	m_pos.x = 540.0f;
 	m_pos.y = Game::kScreenHeight / 2;
 	m_vec.x = 0.0f;
 	m_vec.y = 0.0f;
 	m_colSize.x = 30;
 	m_colSize.y = 30;
-	vecY = kSpeedY;
+	vecY = m_speedY;
 }
 
 void Enemy::update()
 {
+	if (m_isDead)	return;
 	m_pos.y += vecY;
 	if (m_pos.y < 0)
 	{
-		vecY = kSpeedY;
+		m_speedY = m_speedRand;
+		vecY = m_speedY;
 	}
 	if (m_pos.y > Game::kScreenHeight - 30)
 	{
-		vecY = -kSpeedY;
+		m_speedY = m_speedRand;
+		vecY = -m_speedY;
 	}
 }
 
@@ -72,4 +73,11 @@ bool Enemy::isCol(ShotBase& shotBase)
 	if (shotBottom < enemyTop)	return false;
 
 	return true;
+
+	/*if (shotLeft < enemyRight)	return false;
+	if (shotRight > enemyLeft)	return false;
+	if (shotTop < enemyBottom)	return false;
+	if (shotBottom > enemyTop)	return false;
+
+	return true;*/
 }

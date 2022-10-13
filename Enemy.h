@@ -1,10 +1,10 @@
 #pragma once
 
-#include "ShotBase.h"
 #include "Vec2.h"
 
 class SceneMain;
-class ShotNoraml;
+class ShotBase;
+class ShotNormal;
 
 class Enemy
 {
@@ -23,7 +23,7 @@ public:
 	// 描画
 	void draw();
 	// 敵の死亡
-	void setDead(bool isDead) { m_isDead = isDead; };
+	void setDead(bool isDead) { m_isDead = isDead; }
 
 	// 当たり判定
 	bool isCol(ShotBase& shotBase);
@@ -35,7 +35,10 @@ public:
 
 
 private:
-
+	// 敵のスピード
+	int m_speedY;
+	// 敵のスピードの振れ幅
+	int m_speedRand;
 	// グラフィックハンドル
 	int m_handle;
 	// 敵の速さ
