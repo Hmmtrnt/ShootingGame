@@ -4,7 +4,8 @@
 #include "Enemy.h"
 #include "player.h"
 #include "SceneBase.h"
-#include "ShotBase.h"
+//#include "ShotBase.h"
+#include "ShotNormal.h"
 
 class SceneMain : public SceneBase
 {
@@ -32,12 +33,14 @@ private:
 	int m_hPlayerGraphic;
 	int m_hShotGraphic;
 	// 敵のグラフィックハンドル
-	int m_hEnemyGraphic;
+	//int m_hEnemyGraphic;
 
 	// プレイヤー
 	Player m_player;
 	// エネミー
 	Enemy m_enemy;
+	// ショットノーマル
+	ShotNoraml m_shotNoraml;
 	// ショット
 	std::vector<ShotBase*>m_pShotVt;
 	/*表示位置*/

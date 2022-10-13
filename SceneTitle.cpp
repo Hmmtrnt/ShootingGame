@@ -23,5 +23,5 @@ SceneBase* SceneTitle::update()
 
 void SceneTitle::draw()
 {
-	DrawString(Game::kScreenWidth / 2 - 100, Game::kScreenHeight / 2 - 50, "‚â‚Â‚ğ‘Å‚¿”²‚¯I", GetColor(255, 255, 255));
+	DrawString(Game::kScreenWidth / 2 - 50, Game::kScreenHeight / 2 - 50, "‚â‚Â‚ğ‘Å‚ÄI", GetColor(255, 255, 255));
 }

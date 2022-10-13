@@ -24,7 +24,7 @@ SceneMain::SceneMain()
 {
 	m_hPlayerGraphic = -1;
 	m_hShotGraphic = -1;
-	m_hEnemyGraphic = -1;
+	//m_hEnemyGraphic = -1;
 }
 
 SceneMain::~SceneMain()
@@ -55,13 +55,13 @@ void SceneMain::init()
 	// ’e
 	m_hShotGraphic = DrawBox(m_posShot.x, m_posShot.y, m_posShot.x + m_sizeShot.x, m_posShot.y + m_sizeShot.y, GetColor(255, 255, 255), true);
 	// “G
-	m_hEnemyGraphic = DrawBox(m_posEnemy.x, m_posEnemy.y, m_posEnemy.x + m_sizeEnemy.x, m_posEnemy.y + m_sizeEnemy.x, GetColor(255, 255, 255), true);
+	//m_hEnemyGraphic = DrawBox(m_posEnemy.x, m_posEnemy.y, m_posEnemy.x + m_sizeEnemy.x, m_posEnemy.y + m_sizeEnemy.x, GetColor(255, 255, 255), true);
 
 	m_player.setHandle(m_hPlayerGraphic);
 	m_player.init();
 	m_player.setMain(this);
 
-	m_enemy.setHandle(m_hEnemyGraphic);
+	//m_enemy.setHandle(m_hEnemyGraphic);
 	m_enemy.init();
 	m_enemy.setMain(this);
 }
@@ -83,6 +83,12 @@ SceneBase* SceneMain::update()
 {
 	m_enemy.update();
 	m_player.update();
+
+	// “G‚Ì“–‚½‚è”»’è
+	if (m_enemy.isCol(m_shotNoraml))
+	{
+		m_enemy.setDead(true);
+	}
 
 	std::vector<ShotBase*>::iterator it = m_pShotVt.begin();
 	while (it != m_pShotVt.end())

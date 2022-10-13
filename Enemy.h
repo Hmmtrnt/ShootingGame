@@ -4,7 +4,7 @@
 #include "Vec2.h"
 
 class SceneMain;
-class ShotBase;
+class ShotNoraml;
 
 class Enemy
 {
@@ -23,12 +23,10 @@ public:
 	// 描画
 	void draw();
 	// 敵の死亡
-	void setDead(bool isDead) { m_isDead = isDead; }
+	void setDead(bool isDead) { m_isDead = isDead; };
 
 	// 当たり判定
 	bool isCol(ShotBase& shotBase);
-	// 敵の死んだ座標
-	// bool isDead() const { return m_isDead; }
 
 	// 情報取得
 	Vec2 getPos() const { return m_pos; }
@@ -40,7 +38,7 @@ private:
 
 	// グラフィックハンドル
 	int m_handle;
-	//
+	// 敵の速さ
 	int vecY;
 
 	// 生死
