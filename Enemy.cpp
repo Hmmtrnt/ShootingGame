@@ -19,9 +19,7 @@ Enemy::~Enemy()
 
 void Enemy::init()
 {
-	srand(GetNowCount());
 	m_speedY = 25;
-	m_speedRand = GetRand(25) + 1;
 	m_pos.x = 540.0f;
 	m_pos.y = Game::kScreenHeight / 2;
 	m_vec.x = 0.0f;
@@ -33,6 +31,8 @@ void Enemy::init()
 
 void Enemy::update()
 {
+	m_speedRand = GetRand(25) + 1;
+
 	if (m_isDead)	return;
 	m_pos.y += vecY;
 	if (m_pos.y < 0)

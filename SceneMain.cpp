@@ -34,6 +34,8 @@ SceneMain::~SceneMain()
 
 void SceneMain::init()
 {
+	time = 1;
+
 	/*表示位置*/
 	// プレイヤー
 	m_posPlayer.x = 100.0f;
@@ -99,6 +101,7 @@ SceneBase* SceneMain::update()
 		if (m_enemy.isCol(*pShot))
 		{
 			m_enemy.setDead(true);
+			time--;
 		}
 		if (!pShot->isExist())
 		{
@@ -112,8 +115,7 @@ SceneBase* SceneMain::update()
 	}
 
 	// シーン移動(予定では敵に弾が当たったらリザルト)
-	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-	if (padState & PAD_INPUT_2)
+	if (time == 0)
 	{
 		return (new SceneResult);
 	}
@@ -130,6 +132,7 @@ void SceneMain::draw()
 		pShot->draw();
 	}
 
+	DrawFormatString(20, 20, GetColor(255, 0, 0), "やつ%d", time);
 	DrawString(0, 0, "メイン画面", GetColor(255, 255, 255));
 }
 

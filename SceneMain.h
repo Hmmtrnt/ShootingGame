@@ -32,6 +32,8 @@ private:
 	// プレイヤーのグラフィックハンドル
 	int m_hPlayerGraphic;
 	int m_hShotGraphic;
+	// 時間
+	int time;
 	// 敵のグラフィックハンドル
 	//int m_hEnemyGraphic;
 
