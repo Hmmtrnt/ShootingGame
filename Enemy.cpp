@@ -2,6 +2,7 @@
 #include "Enemy.h"
 #include "game.h"
 #include "SceneResult.h"
+#include "ShotBase.h"
 
 namespace
 {
@@ -34,6 +35,8 @@ void Enemy::init()
 
 void Enemy::update()
 {
+	if (m_isDead)	return;
+
 	m_pos.y += vecY;
 	if (m_pos.y < 0)
 	{
