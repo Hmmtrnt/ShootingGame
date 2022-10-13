@@ -7,7 +7,7 @@
 namespace
 {
 	// 敵のスピード
-	constexpr float kSpeedY = 5.0f;
+	constexpr float kSpeedY = 0.0f;
 }
 
 Enemy::Enemy()
@@ -52,4 +52,23 @@ void Enemy::draw()
 {
 	if (m_isDead)	return;
 	DrawBox(m_pos.x, m_pos.y, m_pos.x + m_colSize.x, m_pos.y + m_colSize.y, GetColor(255, 255, 255), true);
+}
+
+bool Enemy::isCol(ShotBase& shotBase)
+{
+	float shotLeft = shotBase.getPos().x;
+	float shotRight = shotBase.getPos().x + shotBase.getSize().x;
+	float shotTop = shotBase.getPos().y;
+	float shotBottom = shotBase.getPos().y + shotBase.getSize().y;
+
+	float enemyLeft = getPos().x;
+	float enemyRight = getPos().x + getColSize().x;
+	float enemyTop = getPos().y;
+	float enemyBottom = getPos().y + getColSize().y;
+
+	if (shotLeft > enemyRight)	return false;
+	if (shotRight < enemyLeft)	return false;
+	if (shotTop > enemyBottom)	return false;
+	if (shotBottom < enemyTop)	return false;
+	return true;
 }

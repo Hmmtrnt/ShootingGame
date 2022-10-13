@@ -4,6 +4,7 @@
 #include "Vec2.h"
 
 class SceneMain;
+class ShotBase;
 
 class Enemy
 {
@@ -21,8 +22,13 @@ public:
 	void update();
 	// •`‰æ
 	void draw();
+	// “G‚Ì€–S
+	void setDead(bool isDead) { m_isDead = isDead; }
+
+	// “–‚½‚è”»’è
+	bool isCol(ShotBase& shotBase);
 	// “G‚Ì€‚ñ‚¾À•W
-	bool isDead() const { return m_isDead; }
+	// bool isDead() const { return m_isDead; }
 
 	// î•ñæ“¾
 	Vec2 getPos() const { return m_pos; }

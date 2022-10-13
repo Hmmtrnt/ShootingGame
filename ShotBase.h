@@ -13,16 +13,16 @@ public:
 	void setHandle(int handle) {}
 
 	// ショット開始
-	void start(Vec2 pos);
+	virtual void start(Vec2 pos);
 	// 更新
-	void update();
+	virtual void update();
 	// 表示
-	void draw();
+	virtual void draw();
 
 	// 弾が存在するかどうか
 	bool isExist() const { return m_isExist; }
 	// 当たり判定
-	bool isCol(Enemy& enemy);
+	//bool isCol(Enemy& enemy);
 
 	// 情報取得
 	Vec2 getPos() const { return m_pos; }
