@@ -3,6 +3,7 @@
 #include "SceneMain.h"
 #include "SceneTitle.h"
 #include "SceneResult.h"
+#include "SceneFail.h"
 #include "ShotNormal.h"
 #include "ShotBase.h"
 #include <cassert>
@@ -137,7 +138,7 @@ SceneBase* SceneMain::update()
 		time--;
 		if (time == 0)
 		{
-			return (new SceneResult);
+			return (new SceneFail);
 		}
 	}
 	return this;

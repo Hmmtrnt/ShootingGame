@@ -4,11 +4,13 @@
 #include "SceneTitle.h"
 #include "SceneMain.h"
 #include "SceneResult.h"
+#include "SceneFail.h"
 
 SceneManager::SceneManager()
 {
 	m_pScene = nullptr;
 }
+
 SceneManager::~SceneManager()
 {
 
