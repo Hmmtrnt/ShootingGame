@@ -19,7 +19,7 @@ Enemy::~Enemy()
 
 void Enemy::init()
 {
-	m_speedY = 0;
+	m_speedY = 25;
 	m_pos.x = 500.0f;
 	m_pos.y = Game::kScreenHeight / 2;
 	m_vec.x = 0.0f;
