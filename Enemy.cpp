@@ -19,7 +19,7 @@ Enemy::~Enemy()
 
 void Enemy::init()
 {
-	m_speedY = 25;
+	m_speedY = 0;
 	m_pos.x = 500.0f;
 	m_pos.y = Game::kScreenHeight / 2;
 	m_vec.x = 0.0f;
@@ -57,7 +57,6 @@ void Enemy::update()
 void Enemy::draw()
 {
 	if (m_isDead)	return;
-	//DrawBox(m_pos.x, m_pos.y, m_pos.x + m_colSize.x, m_pos.y + m_colSize.y, GetColor(255, 255, 255), true);
 	DrawTurnGraph(m_pos.x, m_pos.y, m_enemyHandle, true);
 }
 
@@ -81,11 +80,4 @@ bool Enemy::isCol(ShotBase& shotBase)
 	if (shotBottom < enemyTop)	return false;
 
 	return true;
-
-	/*if (shotLeft < enemyRight)	return false;
-	if (shotRight > enemyLeft)	return false;
-	if (shotTop < enemyBottom)	return false;
-	if (shotBottom > enemyTop)	return false;
-
-	return true;*/
 }

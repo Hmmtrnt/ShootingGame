@@ -22,4 +22,6 @@ private:
 	int m_fadeBright;
 	// フェード速度
 	int m_fadeSpeed;
+	// 背景のグラフィックハンドル
+	int m_fieldHandle;
 };

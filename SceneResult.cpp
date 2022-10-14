@@ -12,7 +12,7 @@ void SceneResult::init()
 SceneBase* SceneResult::update()
 {
 	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-	if (padState & PAD_INPUT_3)
+	if (padState & PAD_INPUT_2)
 	{
 		return (new SceneTitle);
 	}
