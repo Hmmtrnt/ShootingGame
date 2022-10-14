@@ -38,7 +38,7 @@ void Enemy::setHandle(int handle)
 
 void Enemy::update()
 {
-	m_speedRand = GetRand(25) + 1;
+	m_speedRand = GetRand(25) + 5;
 
 	if (m_isDead)	return;
 	m_pos.y += vecY;

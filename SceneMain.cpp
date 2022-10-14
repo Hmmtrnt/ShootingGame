@@ -66,9 +66,9 @@ void SceneMain::init()
 	// “G‚Ì”
 	enemyNum = 1;
 	// ’e‚Ì”
-	shotNum = 5;
+	shotNum = 3;
 	// ŠÔ
-	time = 90;
+	time = 50;
 
 	m_player.setHandle(m_hPlayerGraphic);
 	m_player.init();

@@ -52,6 +52,7 @@ SceneBase* SceneTitle::update()
 void SceneTitle::draw()
 {
 	SetDrawBright(m_fadeBright, m_fadeBright, m_fadeBright);
-	DrawString(Game::kScreenWidth / 2 - 50, Game::kScreenHeight / 2 - 50, "やつを打て！", GetColor(255, 255, 255));
-	DrawString(Game::kScreenWidth / 2 - 75, Game::kScreenHeight / 2 + 20, "１ボタンでスタート", GetColor(255, 255, 255));
+	DrawString(Game::kScreenWidth / 2 - 50, Game::kScreenHeight / 2 - 80, "やつを打て！", GetColor(255, 255, 255));
+	DrawString(Game::kScreenWidth / 2 - 85, Game::kScreenHeight / 2 - 0, "　　　操作説明\n１ボタン　　:発射\n左スティック:上下移動", GetColor(255, 255, 255));
+	DrawString(Game::kScreenWidth / 2 - 75, Game::kScreenHeight / 2 + 130, "１ボタンでスタート", GetColor(255, 255, 255));
 }
