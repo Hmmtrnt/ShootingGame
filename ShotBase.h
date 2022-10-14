@@ -21,8 +21,6 @@ public:
 
 	// ’e‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©
 	bool isExist() const { return m_isExist; }
-	// “–‚½‚è”»’è
-	//bool isCol(Enemy& enemy);
 
 	// î•ñæ“¾
 	Vec2 getPos() const { return m_pos; }

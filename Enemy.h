@@ -13,7 +13,7 @@ public:
 	virtual ~Enemy();
 
 	// グラフィックデータ設定
-	void setHandle(int handle) { m_handle = handle; }
+	void setHandle(int handle);
 	// 敵の初期化
 	void init();
 	// SceneMainクラスのポインタ設定
@@ -31,7 +31,7 @@ public:
 	// 情報取得
 	Vec2 getPos() const { return m_pos; }
 	// サイズの取得
-	Vec2 getColSize() const { return m_colSize; }
+	Vec2 getColSize() const { return m_size; }
 
 
 private:
@@ -40,7 +40,7 @@ private:
 	// 敵のスピードの振れ幅
 	int m_speedRand;
 	// グラフィックハンドル
-	int m_handle;
+	int m_enemyHandle;
 	// 敵の速さ
 	int vecY;
 
@@ -56,4 +56,6 @@ private:
 	Vec2 m_vec;
 	// 当たり判定の幅と高さ
 	Vec2 m_colSize;
+	// グラフィックデータの大きさ
+	Vec2 m_size;
 };

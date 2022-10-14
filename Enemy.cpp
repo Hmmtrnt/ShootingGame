@@ -20,13 +20,20 @@ Enemy::~Enemy()
 void Enemy::init()
 {
 	m_speedY = 25;
-	m_pos.x = 540.0f;
+	m_pos.x = 500.0f;
 	m_pos.y = Game::kScreenHeight / 2;
 	m_vec.x = 0.0f;
 	m_vec.y = 0.0f;
 	m_colSize.x = 30;
 	m_colSize.y = 30;
 	vecY = m_speedY;
+}
+
+void Enemy::setHandle(int handle)
+{
+	m_enemyHandle = handle;
+
+	GetGraphSizeF(m_enemyHandle, &m_size.x, &m_size.y);
 }
 
 void Enemy::update()
@@ -50,14 +57,15 @@ void Enemy::update()
 void Enemy::draw()
 {
 	if (m_isDead)	return;
-	DrawBox(m_pos.x, m_pos.y, m_pos.x + m_colSize.x, m_pos.y + m_colSize.y, GetColor(255, 255, 255), true);
+	//DrawBox(m_pos.x, m_pos.y, m_pos.x + m_colSize.x, m_pos.y + m_colSize.y, GetColor(255, 255, 255), true);
+	DrawTurnGraph(m_pos.x, m_pos.y, m_enemyHandle, true);
 }
 
 bool Enemy::isCol(ShotBase& shotBase)
 {
-	float shotLeft = shotBase.getPos().x;
+	float shotLeft = shotBase.getPos().x - shotBase.getSize().x;
 	float shotRight = shotBase.getPos().x + shotBase.getSize().x;
-	float shotTop = shotBase.getPos().y;
+	float shotTop = shotBase.getPos().y - shotBase.getSize().y;
 	float shotBottom = shotBase.getPos().y + shotBase.getSize().y;
 
 	float enemyLeft = getPos().x;

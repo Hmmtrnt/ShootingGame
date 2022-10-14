@@ -31,11 +31,18 @@ public:
 private:
 	// プレイヤーのグラフィックハンドル
 	int m_hPlayerGraphic;
+	// ショットのグラフィックハンドル
 	int m_hShotGraphic;
+	// 背景のグラフィックハンドル
+	int m_hFieldGraphic;
+	// 敵のグラフィックハンドル
+	int m_hEnemyGraphic;
+	// 敵の数
+	int enemyNum;
+	// 弾の数
+	int shotNum;
 	// 時間
 	int time;
-	// 敵のグラフィックハンドル
-	//int m_hEnemyGraphic;
 
 	// プレイヤー
 	Player m_player;

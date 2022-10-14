@@ -24,7 +24,10 @@ SceneMain::SceneMain()
 {
 	m_hPlayerGraphic = -1;
 	m_hShotGraphic = -1;
-	//m_hEnemyGraphic = -1;
+	m_hFieldGraphic = -1;
+	m_hEnemyGraphic = -1;
+	enemyNum = 0;
+	shotNum = 0;
 }
 
 SceneMain::~SceneMain()
@@ -34,7 +37,6 @@ SceneMain::~SceneMain()
 
 void SceneMain::init()
 {
-	time = 1;
 
 	/*•\Ž¦ˆÊ’u*/
 	// ƒvƒŒƒCƒ„[
@@ -53,25 +55,35 @@ void SceneMain::init()
 	m_sizeEnemy.x = 30.0f;
 	m_sizeEnemy.y = 30.0f;
 	// ƒvƒŒƒCƒ„[
-	m_hPlayerGraphic = DrawCircle(m_posPlayer.x, m_posPlayer.y, 50, GetColor(255, 255, 255), true);
+	m_hPlayerGraphic = LoadGraph("data/player2.png");
 	// ’e
 	m_hShotGraphic = DrawBox(m_posShot.x, m_posShot.y, m_posShot.x + m_sizeShot.x, m_posShot.y + m_sizeShot.y, GetColor(255, 255, 255), true);
+	// ”wŒi
+	m_hFieldGraphic = LoadGraph("data/field2.jpg");
 	// “G
-	//m_hEnemyGraphic = DrawBox(m_posEnemy.x, m_posEnemy.y, m_posEnemy.x + m_sizeEnemy.x, m_posEnemy.y + m_sizeEnemy.x, GetColor(255, 255, 255), true);
+	m_hEnemyGraphic = LoadGraph("data/enemy2.png");
+	// “G‚Ì”
+	enemyNum = 1;
+	// ’e‚Ì”
+	shotNum = 5;
+	// ŽžŠÔ
+	time = 90;
 
 	m_player.setHandle(m_hPlayerGraphic);
 	m_player.init();
 	m_player.setMain(this);
 
-	//m_enemy.setHandle(m_hEnemyGraphic);
+	m_enemy.setHandle(m_hEnemyGraphic);
 	m_enemy.init();
 	m_enemy.setMain(this);
 }
 
 void SceneMain::end()
 {
+	DeleteGraph(m_hFieldGraphic);
 	DeleteGraph(m_hPlayerGraphic);
 	DeleteGraph(m_hShotGraphic);
+	DeleteGraph(m_hEnemyGraphic);
 
 	for (auto& pShot : m_pShotVt)
 	{
@@ -93,6 +105,7 @@ SceneBase* SceneMain::update()
 		auto& pShot = (*it);
 		if (!pShot)
 		{
+			
 			it++;
 			continue;
 		}
@@ -101,7 +114,7 @@ SceneBase* SceneMain::update()
 		if (m_enemy.isCol(*pShot))
 		{
 			m_enemy.setDead(true);
-			time--;
+			enemyNum--;
 		}
 		if (!pShot->isExist())
 		{
@@ -115,15 +128,24 @@ SceneBase* SceneMain::update()
 	}
 
 	// ƒV[ƒ“ˆÚ“®(—\’è‚Å‚Í“G‚É’e‚ª“–‚½‚Á‚½‚çƒŠƒUƒ‹ƒg)
-	if (time == 0)
+	if (enemyNum == 0)
 	{
 		return (new SceneResult);
+	}
+	else if (shotNum == 0)
+	{
+		time--;
+		if (time == 0)
+		{
+			return (new SceneResult);
+		}
 	}
 	return this;
 }
 
 void SceneMain::draw()
 {
+	DrawGraph(0, 0, m_hFieldGraphic, false);
 	m_enemy.draw();
 	m_player.draw();
 	for (auto& pShot : m_pShotVt)
@@ -132,8 +154,10 @@ void SceneMain::draw()
 		pShot->draw();
 	}
 
-	DrawFormatString(20, 20, GetColor(255, 0, 0), "‚â‚Â%d", time);
-	DrawString(0, 0, "ƒƒCƒ“‰æ–Ê", GetColor(255, 255, 255));
+	DrawFormatString(0, 20, GetColor(0, 0, 0), "‚â‚Â%d", enemyNum);
+	DrawString(0, 0, "ƒƒCƒ“‰æ–Ê", GetColor(0, 0, 0));
+	DrawFormatString(0, 40, GetColor(0, 0, 0), "’e:%d", shotNum);
+	DrawFormatString(0, 60, GetColor(0, 0, 0), "ŽžŠÔ:%d", time);
 }
 
 bool SceneMain::createShotNormal(Vec2 pos)
@@ -142,6 +166,7 @@ bool SceneMain::createShotNormal(Vec2 pos)
 	pShot->setHandle(m_hShotGraphic);
 	pShot->start(pos);
 	m_pShotVt.push_back(pShot);
+	shotNum--;
 
 	return true;
 }

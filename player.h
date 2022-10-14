@@ -11,7 +11,7 @@ public:
 	virtual ~Player();
 
 	// グラフィックデータ設定
-	void setHandle(int handle) { m_handle = handle; }
+	void setHandle(int handle);
 
 	// プレイヤーの初期化
 	void init();
@@ -30,13 +30,9 @@ public:
 
 private:
 	//グラフィックハンドル
-	int m_handle;
+	int m_Playerhandle;
 	// 弾の発射間隔
 	int m_shotInterval;
-
-	// 自機の半径
-	int m_radius;
-
 	// SceneMainのポインタ
 	SceneMain* m_pMain;
 
@@ -44,4 +40,6 @@ private:
 	Vec2 m_pos;
 	// 移動
 	Vec2 m_vec;
+	// プレイヤーグラフィックの幅
+	Vec2 m_size;
 };
