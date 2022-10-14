@@ -23,6 +23,10 @@ ShotBase::~ShotBase()
 void ShotBase::start(Vec2 pos)
 {
 	m_isExist = true;
+
+	pos.x += 35.0f;
+	pos.y += 25.0f;
+
 	m_pos = pos;
 }
 

@@ -62,17 +62,17 @@ void Player::update()
 	if (padState & PAD_INPUT_UP)
 	{
 		m_pos.y -= kSpeedMaxY;
-		if (m_pos.y < 0)
+		if (m_pos.y < - 25)
 		{
-			m_pos.y = 0;
+			m_pos.y = - 25;
 		}
 	}
 	else if (padState & PAD_INPUT_DOWN)
 	{
 		m_pos.y += kSpeedMaxY;
-		if (m_pos.y > Game::kScreenHeight)
+		if (m_pos.y > Game::kScreenHeight - 25)
 		{
-			m_pos.y = Game::kScreenHeight;
+			m_pos.y = Game::kScreenHeight - 25;
 		}
 	}
 }
