@@ -4,14 +4,12 @@
 class SceneResult : public SceneBase
 {
 public:
-	SceneResult()
-	{
-		m_isEnd = false;
-	}
+	SceneResult();
+	
 	virtual ~SceneResult() {}
 
 	virtual void init() override;
-	virtual void end() override {}
+	virtual void end() override;
 
 	virtual SceneBase* update() override;
 	virtual void draw() override;
@@ -19,4 +17,6 @@ public:
 	virtual bool isEnd() { return m_isEnd; }
 private:
 	bool m_isEnd;
+	// 背景のグラフィックハンドル
+	int m_hFieldHandle;
 };

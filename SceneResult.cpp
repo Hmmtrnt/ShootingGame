@@ -4,9 +4,21 @@
 #include "SceneResult.h"
 #include "SceneTitle.h"
 
+SceneResult::SceneResult()
+{
+	m_isEnd = false;
+	m_hFieldHandle = 0;
+}
+
 void SceneResult::init()
 {
 	m_isEnd = false;
+	m_hFieldHandle = LoadGraph("data/field2.jpg");
+}
+
+void SceneResult::end()
+{
+	DeleteGraph(m_hFieldHandle);
 }
 
 SceneBase* SceneResult::update()
@@ -21,5 +33,6 @@ SceneBase* SceneResult::update()
 
 void SceneResult::draw()
 {
-	DrawString(0, 0, "リザルト画面", GetColor(255, 255, 255));
+	DrawGraph(0, 0, m_hFieldHandle, true);
+	DrawString(0, 0, "リザルト画面", GetColor(0, 0, 0));
 }
