@@ -9,7 +9,7 @@ public:
 	virtual ~SceneFail() {}
 
 	virtual void init() override;
-	virtual void end() override {}
+	virtual void end() override;
 
 	virtual SceneBase* update() override;
 	virtual void draw() override;

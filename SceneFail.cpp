@@ -15,8 +15,9 @@ namespace
 SceneFail::SceneFail()
 {
 	m_isEnd = false;
-	m_enemyHandle = -1;
-	m_fontHandle = -1;
+	m_fieldHandle = 0;
+	m_enemyHandle = 0;
+	m_fontHandle = 0;
 	m_pos.x = 0;
 	m_pos.y = 0;
 	m_vec.x = 0;
@@ -39,6 +40,12 @@ void SceneFail::init()
 	m_pos.y = m_fieldY;
 }
 
+void SceneFail::end()
+{
+	DeleteGraph(m_enemyHandle);
+	DeleteGraph(m_fieldHandle);
+}
+
 SceneBase* SceneFail::update()
 {
 	m_pos += m_vec;
@@ -56,7 +63,7 @@ SceneBase* SceneFail::update()
 	m_vec.y += kGravity;
 
 	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-	if (padState & PAD_INPUT_2)
+	if (padState & PAD_INPUT_1)
 	{
 		return (new SceneTitle);
 	}
@@ -69,5 +76,6 @@ void SceneFail::draw()
 	DrawFormatString(Game::kScreenWidth / 2 - 120, Game::kScreenHeight / 2 + 120, GetColor(0, 0, 0), "やつ「オレは生き残ったぞ！」");
 	DrawStringToHandle(Game::kScreenWidth / 2 - 160, Game::kScreenHeight / 2 - 100, "ＧＡＭＥＯＶＥＲ", GetColor(255, 0, 0), m_fontHandle);
 	DrawGraphF(m_pos.x, m_pos.y, m_enemyHandle, true);
-	DrawString(Game::kScreenWidth / 2 - 90, Game::kScreenHeight / 2, "２ボタン:リスタート", GetColor(0, 0, 0));
+	DrawString(Game::kScreenWidth / 2 - 90, Game::kScreenHeight / 2, "１ボタン:タイトル画面", GetColor(0, 0, 0));
+	
 }

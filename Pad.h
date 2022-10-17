@@ -1,5 +1,6 @@
 #pragma once
 
+// コントローラーからの入力状態取得
 namespace Pad
 {
 	// パッドの入力状態取得

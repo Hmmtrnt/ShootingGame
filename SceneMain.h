@@ -38,11 +38,11 @@ private:
 	// 敵のグラフィックハンドル
 	int m_hEnemyGraphic;
 	// 敵の数
-	int enemyNum;
+	int m_enemyNum;
 	// 弾の数
-	int shotNum;
-	// 時間
-	int time;
+	int m_shotNum;
+	// 最後の一発を撃ち終わってからゲームオーバーまでの時間
+	int m_time;
 
 	// プレイヤー
 	Player m_player;

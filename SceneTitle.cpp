@@ -3,6 +3,7 @@
 #include "SceneTitle.h"
 #include "SceneMain.h"
 #include "SceneResult.h"
+#include "Pad.h"
 
 SceneTitle::SceneTitle()
 {
@@ -10,6 +11,8 @@ SceneTitle::SceneTitle()
 	m_fadeBright = 0;
 	m_fadeSpeed = 0;
 	m_hFieldGraphic = 0;
+	m_textPosY = 0;
+	m_textVecY = 0;
 }
 
 void SceneTitle::init()
@@ -18,6 +21,8 @@ void SceneTitle::init()
 	m_fadeBright = 0;
 	m_fadeSpeed = 8;
 	m_hFieldGraphic = LoadGraph("data/field2.jpg");
+	m_textPosY = 0;
+	m_textVecY = 4;
 }
 
 void SceneTitle::end()
@@ -47,6 +52,11 @@ SceneBase* SceneTitle::update()
 		{
 			m_fadeSpeed = -8;
 		}
+		/*if (Pad::isTrigger(PAD_INPUT_1))
+		{
+			m_fadeSpeed = -8;
+			m_isEnd = true;
+		}*/
 	}
 	
 	return this;

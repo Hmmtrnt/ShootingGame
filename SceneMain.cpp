@@ -6,6 +6,7 @@
 #include "SceneFail.h"
 #include "ShotNormal.h"
 #include "ShotBase.h"
+#include "Pad.h"
 #include <cassert>
 
 namespace
@@ -27,8 +28,9 @@ SceneMain::SceneMain()
 	m_hShotGraphic = -1;
 	m_hFieldGraphic = -1;
 	m_hEnemyGraphic = -1;
-	enemyNum = 0;
-	shotNum = 0;
+	m_enemyNum = 0;
+	m_shotNum = 0;
+	m_time = 0;
 }
 
 SceneMain::~SceneMain()
@@ -64,11 +66,11 @@ void SceneMain::init()
 	// “G
 	m_hEnemyGraphic = LoadGraph("data/enemy2.png");
 	// “G‚Ì”
-	enemyNum = 1;
+	m_enemyNum = 1;
 	// ’e‚Ì”
-	shotNum = 3;
+	m_shotNum = 3;
 	// ŽžŠÔ
-	time = 50;
+	m_time = 50;
 
 	m_player.setHandle(m_hPlayerGraphic);
 	m_player.init();
@@ -115,7 +117,7 @@ SceneBase* SceneMain::update()
 		if (m_enemy.isCol(*pShot))
 		{
 			m_enemy.setDead(true);
-			enemyNum--;
+			m_enemyNum--;
 		}
 		if (!pShot->isExist())
 		{
@@ -129,14 +131,14 @@ SceneBase* SceneMain::update()
 	}
 
 	// ƒV[ƒ“ˆÚ“®(—\’è‚Å‚Í“G‚É’e‚ª“–‚½‚Á‚½‚çƒŠƒUƒ‹ƒg)
-	if (enemyNum == 0)
+	if (m_enemyNum == 0)
 	{
 		return (new SceneResult);
 	}
-	else if (shotNum == 0)
+	else if (m_shotNum == 0)
 	{
-		time--;
-		if (time == 0)
+		m_time--;
+		if (m_time == 0)
 		{
 			return (new SceneFail);
 		}
@@ -155,10 +157,9 @@ void SceneMain::draw()
 		pShot->draw();
 	}
 
-	DrawFormatString(0, 20, GetColor(0, 0, 0), "‚â‚Â%d", enemyNum);
+	DrawFormatString(0, 20, GetColor(0, 0, 0), "‚â‚Â%d", m_enemyNum);
 	DrawString(0, 0, "ƒƒCƒ“‰æ–Ê", GetColor(0, 0, 0));
-	DrawFormatString(0, 40, GetColor(0, 0, 0), "’e:%d", shotNum);
-	DrawFormatString(0, 60, GetColor(0, 0, 0), "ŽžŠÔ:%d", time);
+	DrawFormatString(0, 40, GetColor(0, 0, 0), "’e:%d", m_shotNum);
 }
 
 bool SceneMain::createShotNormal(Vec2 pos)
@@ -167,7 +168,7 @@ bool SceneMain::createShotNormal(Vec2 pos)
 	pShot->setHandle(m_hShotGraphic);
 	pShot->start(pos);
 	m_pShotVt.push_back(pShot);
-	shotNum--;
+	m_shotNum--;
 
 	return true;
 }
