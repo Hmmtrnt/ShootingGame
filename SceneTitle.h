@@ -18,6 +18,8 @@ public:
 	virtual bool isEnd() { return m_isEnd; }
 private:
 	bool m_isEnd;
+	// 背景のグラフィックハンドル
+	int m_hFieldGraphic;
 	// フェード処理
 	int m_fadeBright;
 	// フェード速度

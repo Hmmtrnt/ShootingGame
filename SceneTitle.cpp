@@ -9,6 +9,7 @@ SceneTitle::SceneTitle()
 	m_isEnd = false;
 	m_fadeBright = 0;
 	m_fadeSpeed = 0;
+	m_hFieldGraphic = 0;
 }
 
 void SceneTitle::init()
@@ -16,11 +17,13 @@ void SceneTitle::init()
 	m_isEnd = false;
 	m_fadeBright = 0;
 	m_fadeSpeed = 8;
+	m_hFieldGraphic = LoadGraph("data/field2.jpg");
 }
 
 void SceneTitle::end()
 {
 	SetDrawBright(255, 255, 255);
+	DeleteGraph(m_hFieldGraphic);
 }
 
 SceneBase* SceneTitle::update()
@@ -52,8 +55,8 @@ SceneBase* SceneTitle::update()
 void SceneTitle::draw()
 {
 	SetDrawBright(m_fadeBright, m_fadeBright, m_fadeBright);
-
-	DrawString(Game::kScreenWidth / 2 - 50, Game::kScreenHeight / 2 - 80, "やつを撃て！", GetColor(255, 255, 255));
-	DrawString(Game::kScreenWidth / 2 - 85, Game::kScreenHeight / 2 - 0, "　　　操作説明\n１ボタン　　:発射\n左スティック:上下移動", GetColor(255, 255, 255));
-	DrawString(Game::kScreenWidth / 2 - 75, Game::kScreenHeight / 2 + 130, "１ボタンでスタート", GetColor(255, 255, 255));
+	DrawGraph(0, 0, m_hFieldGraphic, true);
+	DrawString(Game::kScreenWidth / 2 - 50, Game::kScreenHeight / 2 - 80, "やつを撃て！", GetColor(0, 0, 0));
+	DrawString(Game::kScreenWidth / 2 - 85, Game::kScreenHeight / 2 - 0, "　　　操作説明\n１ボタン　　:発射\n左スティック:上下移動", GetColor(0, 0, 0));
+	DrawString(Game::kScreenWidth / 2 - 75, Game::kScreenHeight / 2 + 130, "１ボタンでスタート", GetColor(0, 0, 0));
 }
