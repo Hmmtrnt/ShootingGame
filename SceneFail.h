@@ -22,6 +22,8 @@ private:
 	int m_fieldHandle;
 	// 敵のグラフィックハンドル
 	int m_enemyHandle;
+	// 文字のフォントデータ
+	int m_fontHandle;
 
 	// 地面の高さ
 	float m_fieldY;

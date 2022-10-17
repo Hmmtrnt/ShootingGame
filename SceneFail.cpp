@@ -16,6 +16,7 @@ SceneFail::SceneFail()
 {
 	m_isEnd = false;
 	m_enemyHandle = -1;
+	m_fontHandle = -1;
 	m_pos.x = 0;
 	m_pos.y = 0;
 	m_vec.x = 0;
@@ -31,6 +32,7 @@ void SceneFail::init()
 	m_isEnd = false;
 	m_enemyHandle = LoadGraph("data/enemy2.png");
 	m_fieldHandle = LoadGraph("data/field2.jpg");
+	m_fontHandle = CreateFontToHandle(NULL, 40, 3);
 	GetGraphSizeF(m_enemyHandle, &m_size.x, &m_size.y);
 
 	m_pos.x = 80;
@@ -64,9 +66,8 @@ SceneBase* SceneFail::update()
 void SceneFail::draw()
 {
 	DrawGraphF(0, 0, m_fieldHandle, true);
-	DrawFormatString(Game::kScreenWidth / 2 - 150, Game::kScreenHeight / 2 + 120, GetColor(0, 0, 0), "‚â‚Âu‹°•|‚Ì’é‰¤‚Í‚±‚ÌƒIƒŒ‚¾ƒbƒbI\n@@@ˆÈ‘O•Ï‚í‚è‚È‚­ƒbIv");
-	//SetFontSize(30);
-	DrawString(Game::kScreenWidth / 2 - 80, Game::kScreenHeight / 2 - 100, "‚f‚`‚l‚d‚n‚u‚d‚q", GetColor(255, 0, 0));
+	DrawFormatString(Game::kScreenWidth / 2 - 120, Game::kScreenHeight / 2 + 120, GetColor(0, 0, 0), "‚â‚ÂuƒIƒŒ‚Í¶‚«c‚Á‚½‚¼Iv");
+	DrawStringToHandle(Game::kScreenWidth / 2 - 160, Game::kScreenHeight / 2 - 100, "‚f‚`‚l‚d‚n‚u‚d‚q", GetColor(255, 0, 0), m_fontHandle);
 	DrawGraphF(m_pos.x, m_pos.y, m_enemyHandle, true);
 	DrawString(Game::kScreenWidth / 2 - 90, Game::kScreenHeight / 2, "‚Qƒ{ƒ^ƒ“:ƒŠƒXƒ^[ƒg", GetColor(0, 0, 0));
 }
