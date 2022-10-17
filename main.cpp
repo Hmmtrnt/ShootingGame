@@ -41,6 +41,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		// escきーを押したら終了する
 		if (CheckHitKey(KEY_INPUT_ESCAPE))	break;
+		// ４ボタンを押したら終了
+		int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+		if (padState & PAD_INPUT_4)
+		{
+			break;
+		}
+
 		// fpsを60に固定
 		while (GetNowHiPerformanceCount() - time < 16667)
 		{
