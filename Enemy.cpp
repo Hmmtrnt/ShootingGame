@@ -66,10 +66,10 @@ bool Enemy::isCol(ShotBase& shotBase)
 	float shotTop = shotBase.getPos().y - shotBase.getSize().y;
 	float shotBottom = shotBase.getPos().y + shotBase.getSize().y;
 
-	float enemyLeft = getPos().x;
+	float enemyLeft = getPos().x + 20;
 	float enemyRight = getPos().x + getColSize().x;
-	float enemyTop = getPos().y;
-	float enemyBottom = getPos().y + getColSize().y;
+	float enemyTop = getPos().y + 20;
+	float enemyBottom = getPos().y + getColSize().y - 10;
 
 	//return true;
 
