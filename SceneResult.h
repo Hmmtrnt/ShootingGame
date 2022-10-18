@@ -14,11 +14,9 @@ public:
 	virtual SceneBase* update() override;
 	// 描画
 	virtual void draw() override;
-	// シーン終了
-	virtual bool isEnd() { return m_isEnd; }
+	
 private:
-	// シーン終了
-	bool m_isEnd;
+	
 	// 背景のグラフィックハンドル
 	int m_hFieldHandle;
 	// 文字のグラフィックハンドル

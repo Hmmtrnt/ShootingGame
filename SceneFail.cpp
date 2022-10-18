@@ -14,7 +14,6 @@ namespace
 
 SceneFail::SceneFail()
 {
-	m_isEnd = false;
 	m_fieldHandle = 0;	// ”wŒi
 	m_enemyHandle = 0;	// “G
 	m_fontHandle = 0;	// •¶Žš
@@ -30,7 +29,6 @@ SceneFail::SceneFail()
 
 void SceneFail::init()
 {
-	m_isEnd = false;
 	m_enemyHandle = LoadGraph("data/enemy2.png");		// “G
 	m_fieldHandle = LoadGraph("data/field2.jpg");		// ”wŒi
 	m_fontHandle = CreateFontToHandle(NULL, 40, 3);		// •¶Žš

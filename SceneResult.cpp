@@ -6,8 +6,6 @@
 
 SceneResult::SceneResult()
 {
-	// シーン終了
-	m_isEnd = false;
 	// 背景
 	m_hFieldHandle = 0;
 	// フォント
@@ -16,7 +14,6 @@ SceneResult::SceneResult()
 // 初期化
 void SceneResult::init()
 {
-	m_isEnd = false;
 	// 背景データ
 	m_hFieldHandle = LoadGraph("data/field2.jpg");
 	// フォントデータ

@@ -7,8 +7,6 @@
 
 SceneTitle::SceneTitle()
 {
-	// シーン終了
-	m_isEnd = false;
 	// 背景のグラフィックハンドル
 	m_hFieldGraphic = 0;
 	// フェード処理
@@ -21,7 +19,6 @@ SceneTitle::SceneTitle()
 
 void SceneTitle::init()
 {
-	m_isEnd = false;
 	// フェード処理
 	m_fadeBright = 0;
 	// フェード速度
