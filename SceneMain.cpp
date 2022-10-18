@@ -24,10 +24,11 @@ namespace
 
 SceneMain::SceneMain()
 {
-	m_hPlayerGraphic = -1;		// プレイヤーのグラフィックハンドル
-	m_hShotGraphic = -1;		// ショットのグラフィックハンドル
-	m_hFieldGraphic = -1;		// 背景のグラフィックハンドル
-	m_hEnemyGraphic = -1;		// 敵のグラフィックハンドル
+	m_hPlayerGraphic = 0;		// プレイヤーのグラフィックハンドル
+	m_hShotGraphic = 0;		// ショットのグラフィックハンドル
+	m_hFieldGraphic = 0;		// 背景のグラフィックハンドル
+	m_hEnemyGraphic = 0;		// 敵のグラフィックハンドル
+	m_fontHandle = 0;			// 文字のハンドル
 	m_enemyNum = 0;				// 敵の数
 	m_shotNum = 0;				// 弾の数
 	m_time = 0;					// 最後の一発を撃ち終わってからゲームオーバーまでの時間
@@ -60,6 +61,8 @@ void SceneMain::init()
 	m_hFieldGraphic = LoadGraph("data/field2.jpg");
 	// 敵
 	m_hEnemyGraphic = LoadGraph("data/enemy2.png");
+	// 文字
+	m_fontHandle = CreateFontToHandle(NULL, 50, 4);
 	// 敵の数
 	m_enemyNum = 1;
 	// 弾の数
@@ -155,10 +158,8 @@ void SceneMain::draw()
 		if (!pShot) continue;
 		pShot->draw();
 	}
-
-	DrawFormatString(0, 20, GetColor(0, 0, 0), "やつ%d", m_enemyNum);
-	DrawString(0, 0, "メイン画面", GetColor(0, 0, 0));
-	DrawFormatString(0, 40, GetColor(0, 0, 0), "弾:%d", m_shotNum);
+	// 弾数表示
+	DrawFormatStringFToHandle(0, 0, GetColor(0, 0, 0), m_fontHandle, "弾:%d", m_shotNum);
 }
 // 弾の生成
 bool SceneMain::createShotNormal(Vec2 pos)

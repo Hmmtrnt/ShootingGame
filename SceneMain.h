@@ -36,6 +36,8 @@ private:
 	int m_hFieldGraphic;
 	// 敵のグラフィックハンドル
 	int m_hEnemyGraphic;
+	// 文字のハンドル
+	int m_fontHandle;
 	// 敵の数
 	int m_enemyNum;
 	// 弾の数

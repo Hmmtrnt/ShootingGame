@@ -58,7 +58,7 @@ void Enemy::update()
 		vecY = m_speedY;
 	}
 	// ‰æ–Ê‚Ìˆê”Ô‰º‚És‚Á‚½Žž‚Ìˆ—
-	if (m_pos.y > Game::kScreenHeight - 30)
+	if (m_pos.y > Game::kScreenHeight - getColSize().y)
 	{
 		PlaySoundMem(m_soundHandle, DX_PLAYTYPE_BACK);
 		m_speedY = m_speedRand;
