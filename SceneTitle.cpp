@@ -52,11 +52,6 @@ SceneBase* SceneTitle::update()
 		{
 			m_fadeSpeed = -8;
 		}
-		/*if (Pad::isTrigger(PAD_INPUT_1))
-		{
-			m_fadeSpeed = -8;
-			m_isEnd = true;
-		}*/
 	}
 	
 	return this;
