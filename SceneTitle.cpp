@@ -67,6 +67,7 @@ void SceneTitle::draw()
 	SetDrawBright(m_fadeBright, m_fadeBright, m_fadeBright);
 	DrawGraph(0, 0, m_hFieldGraphic, true);
 	DrawString(Game::kScreenWidth / 2 - 50, Game::kScreenHeight / 2 - 80, "やつを撃て！", GetColor(0, 0, 0));
-	DrawString(Game::kScreenWidth / 2 - 85, Game::kScreenHeight / 2 - 0, "　　　操作説明\n１ボタン　　:発射\n左スティック:上下移動", GetColor(0, 0, 0));
+	DrawString(Game::kScreenWidth / 2 - 85, Game::kScreenHeight / 2, "　　　操作説明\n１ボタン　　:発射\n左スティック:上下移動", GetColor(0, 0, 0));
+	DrawString(Game::kScreenWidth / 2 - 125, Game::kScreenHeight / 2 + 60, "４ボタンでいつでも終了できます", GetColor(0, 0, 0));
 	DrawString(Game::kScreenWidth / 2 - 75, Game::kScreenHeight / 2 + 130, "１ボタンでスタート", GetColor(0, 0, 0));
 }
