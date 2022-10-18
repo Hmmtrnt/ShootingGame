@@ -19,4 +19,6 @@ private:
 	bool m_isEnd;
 	// 背景のグラフィックハンドル
 	int m_hFieldHandle;
+	// 文字のグラフィックハンドル
+	int m_fontHandle;
 };
