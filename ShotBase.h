@@ -8,8 +8,8 @@ class ShotBase
 {
 public:
 	ShotBase();
-	virtual ~ShotBase();
-
+	virtual ~ShotBase() {}
+	// 弾のグラフィックハンドル
 	void setHandle(int handle) {}
 
 	// ショット開始
@@ -29,7 +29,7 @@ public:
 protected:
 	// 表示位置
 	Vec2 m_pos;
-	// 弾の幅
+	// 弾のサイズ
 	Vec2 m_size;
 	// 移動
 	Vec2 m_vec;

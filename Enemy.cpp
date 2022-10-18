@@ -44,16 +44,20 @@ void Enemy::setHandle(int handle)
 // 毎フレームの処理
 void Enemy::update()
 {
+	// 敵のランダムな速度
 	m_speedRand = GetRand(25) + 5;
 
+	// 死亡
 	if (m_isDead)	return;
 	m_pos.y += vecY;
+	// 画面の一番上に行った時の処理
 	if (m_pos.y < 0)
 	{
 		PlaySoundMem(m_soundHandle, DX_PLAYTYPE_BACK);
 		m_speedY = m_speedRand;
 		vecY = m_speedY;
 	}
+	// 画面の一番下に行った時の処理
 	if (m_pos.y > Game::kScreenHeight - 30)
 	{
 		PlaySoundMem(m_soundHandle, DX_PLAYTYPE_BACK);
