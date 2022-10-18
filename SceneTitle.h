@@ -10,11 +10,11 @@ public:
 	// 初期化
 	virtual void init() override;
 	virtual void end() override;
-
+	// 毎フレームの処理
 	virtual SceneBase* update() override;
-
+	// 描画
 	virtual void draw() override;
-
+	// シーン終了
 	virtual bool isEnd() { return m_isEnd; }
 private:
 	bool m_isEnd;
@@ -27,7 +27,4 @@ private:
 	int m_fadeSpeed;
 	// 背景のグラフィックハンドル
 	int m_fieldHandle;
-	// テキスト表示位置変更
-	int m_textPosY;
-	int m_textVecY;
 };

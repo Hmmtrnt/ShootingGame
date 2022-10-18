@@ -11,8 +11,7 @@ class SceneMain : public SceneBase
 {
 public:
 	SceneMain();
-	
-	virtual ~SceneMain();
+	virtual ~SceneMain() {}
 
 	// ‰Šú‰»
 	virtual void init();

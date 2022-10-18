@@ -9,7 +9,7 @@ namespace
 	// Y方向の速度
 	constexpr float kSpeedMaxY = 8.0f;
 	// ショットの発射間隔
-	constexpr int kShotInterval = 60;
+	constexpr int kShotInterval = 70;
 }
 
 Player::Player()
@@ -24,14 +24,14 @@ Player::~Player()
 {
 
 }
-
+// グラフィックデータ設定
 void Player::setHandle(int handle)
 {
 	m_Playerhandle = handle;
 
 	GetGraphSizeF(m_Playerhandle, &m_size.x, &m_size.y);
 }
-
+// 初期化
 void Player::init()
 {
 	m_pos.x = 100.0f;
@@ -40,7 +40,7 @@ void Player::init()
 	m_shotInterval = 0;
 	
 }
-
+// 毎フレームの処理
 void Player::update()
 {
 	// パッドからの入力状態取得
@@ -54,13 +54,14 @@ void Player::update()
 	{
 		if (padState & PAD_INPUT_1)
 		{
+			// ショットのインターバル
 			if (m_pMain->createShotNormal(getPos()))
 			{
 				m_shotInterval = kShotInterval;
 			}
 		}
 	}
-
+	// 上
 	if (padState & PAD_INPUT_UP)
 	{
 		m_pos.y -= kSpeedMaxY;
@@ -69,6 +70,7 @@ void Player::update()
 			m_pos.y = - 25;
 		}
 	}
+	// 下
 	else if (padState & PAD_INPUT_DOWN)
 	{
 		m_pos.y += kSpeedMaxY;
@@ -81,8 +83,6 @@ void Player::update()
 
 void Player::draw()
 {
-	// 仮自機
-	//DrawCircle(m_pos.x, m_pos.y, 30, GetColor(0, 0, 0), true);
-
+	// プレイヤーの表示
 	DrawTurnGraph(m_pos.x, m_pos.y, m_Playerhandle, true);
 }

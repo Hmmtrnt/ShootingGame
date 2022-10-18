@@ -15,16 +15,16 @@ namespace
 SceneFail::SceneFail()
 {
 	m_isEnd = false;
-	m_fieldHandle = 0;
-	m_enemyHandle = 0;
-	m_fontHandle = 0;
-	m_pos.x = 0;
+	m_fieldHandle = 0;	// 背景
+	m_enemyHandle = 0;	// 敵
+	m_fontHandle = 0;	// 文字
+	m_pos.x = 0;		// 表示位置
 	m_pos.y = 0;
-	m_vec.x = 0;
+	m_vec.x = 0;		// 移動速度
 	m_vec.y = 0;
-	m_size.x = 0;
+	m_size.x = 0;		// サイズ
 	m_size.y = 0;
-	m_fieldY = 400;
+	m_fieldY = 400;		// 地面の高さ
 }
 
 

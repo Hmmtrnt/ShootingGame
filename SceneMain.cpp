@@ -24,20 +24,15 @@ namespace
 
 SceneMain::SceneMain()
 {
-	m_hPlayerGraphic = -1;
-	m_hShotGraphic = -1;
-	m_hFieldGraphic = -1;
-	m_hEnemyGraphic = -1;
-	m_enemyNum = 0;
-	m_shotNum = 0;
-	m_time = 0;
+	m_hPlayerGraphic = -1;		// プレイヤーのグラフィックハンドル
+	m_hShotGraphic = -1;		// ショットのグラフィックハンドル
+	m_hFieldGraphic = -1;		// 背景のグラフィックハンドル
+	m_hEnemyGraphic = -1;		// 敵のグラフィックハンドル
+	m_enemyNum = 0;				// 敵の数
+	m_shotNum = 0;				// 弾の数
+	m_time = 0;					// 最後の一発を撃ち終わってからゲームオーバーまでの時間
 }
-
-SceneMain::~SceneMain()
-{
-
-}
-
+// 初期化
 void SceneMain::init()
 {
 
@@ -80,14 +75,15 @@ void SceneMain::init()
 	m_enemy.init();
 	m_enemy.setMain(this);
 }
-
+// 終了
 void SceneMain::end()
 {
+	// グラフィックメモリ削除
 	DeleteGraph(m_hFieldGraphic);
 	DeleteGraph(m_hPlayerGraphic);
 	DeleteGraph(m_hShotGraphic);
 	DeleteGraph(m_hEnemyGraphic);
-
+	// 確認処理
 	for (auto& pShot : m_pShotVt)
 	{
 		assert(pShot);
@@ -95,12 +91,12 @@ void SceneMain::end()
 		pShot = nullptr;
 	}
 }
-
+// 毎フレームの処理
 SceneBase* SceneMain::update()
 {
 	m_enemy.update();
 	m_player.update();
-
+	// ベクター処理
 	std::vector<ShotBase*>::iterator it = m_pShotVt.begin();
 	while (it != m_pShotVt.end())
 	{
@@ -137,6 +133,7 @@ SceneBase* SceneMain::update()
 	}
 	else if (m_shotNum == 0)
 	{
+		// 弾をすべて撃ち終わったら時間が減りゲームオーバー画面へ
 		m_time--;
 		if (m_time == 0)
 		{
@@ -148,9 +145,11 @@ SceneBase* SceneMain::update()
 
 void SceneMain::draw()
 {
+	// 背景
 	DrawGraph(0, 0, m_hFieldGraphic, false);
-	m_enemy.draw();
-	m_player.draw();
+	m_enemy.draw();		// 敵
+	m_player.draw();	// 自機
+	// 弾
 	for (auto& pShot : m_pShotVt)
 	{
 		if (!pShot) continue;
@@ -161,14 +160,15 @@ void SceneMain::draw()
 	DrawString(0, 0, "メイン画面", GetColor(0, 0, 0));
 	DrawFormatString(0, 40, GetColor(0, 0, 0), "弾:%d", m_shotNum);
 }
-
+// 弾の生成
 bool SceneMain::createShotNormal(Vec2 pos)
 {
+	// 弾の生成と消去をそれぞれ確認する
 	ShotNormal* pShot = new ShotNormal;
 	pShot->setHandle(m_hShotGraphic);
 	pShot->start(pos);
 	m_pShotVt.push_back(pShot);
-	m_shotNum--;
+	m_shotNum--;	// 弾数減少
 
 	return true;
 }

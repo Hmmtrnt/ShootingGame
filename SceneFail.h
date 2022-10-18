@@ -5,7 +5,6 @@ class SceneFail : public SceneBase
 {
 public:
 	SceneFail();
-	
 	virtual ~SceneFail() {}
 
 	virtual void init() override;
@@ -13,7 +12,7 @@ public:
 
 	virtual SceneBase* update() override;
 	virtual void draw() override;
-
+	// ƒV[ƒ“I—¹
 	virtual bool isEnd() { return m_isEnd; }
 private:
 	bool m_isEnd;

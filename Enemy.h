@@ -56,8 +56,6 @@ private:
 	Vec2 m_pos;
 	// 移動
 	Vec2 m_vec;
-	// 当たり判定の幅と高さ
-	Vec2 m_colSize;
 	// グラフィックデータの大きさ
 	Vec2 m_size;
 };

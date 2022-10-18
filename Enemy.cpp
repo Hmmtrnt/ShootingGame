@@ -22,24 +22,26 @@ Enemy::~Enemy()
 
 void Enemy::init()
 {
+	// スピードの変数
 	m_speedY = 25;
+	// 敵の位置
 	m_pos.x = 500.0f;
 	m_pos.y = Game::kScreenHeight / 2;
+	// 敵の移動速度
 	m_vec.x = 0.0f;
 	m_vec.y = 0.0f;
-	m_colSize.x = 30;
-	m_colSize.y = 30;
+	// スピードの代入先
 	vecY = m_speedY;
+	// 音のハンドル
 	m_soundHandle = LoadSoundMem("sound/enemySound2.mp3");
 }
-
+// グラフィックデータ設定
 void Enemy::setHandle(int handle)
 {
 	m_enemyHandle = handle;
-
 	GetGraphSizeF(m_enemyHandle, &m_size.x, &m_size.y);
 }
-
+// 毎フレームの処理
 void Enemy::update()
 {
 	m_speedRand = GetRand(25) + 5;
@@ -59,31 +61,31 @@ void Enemy::update()
 		vecY = -m_speedY;
 	}
 }
-
+// 敵の描画
 void Enemy::draw()
 {
+	// 死亡
 	if (m_isDead)	return;
 	DrawTurnGraph(m_pos.x, m_pos.y, m_enemyHandle, true);
 }
-
+// 敵と弾の当たり判定
 bool Enemy::isCol(ShotBase& shotBase)
 {
+	// 弾の当たり判定
 	float shotLeft = shotBase.getPos().x - shotBase.getSize().x;
 	float shotRight = shotBase.getPos().x + shotBase.getSize().x;
 	float shotTop = shotBase.getPos().y - shotBase.getSize().y;
 	float shotBottom = shotBase.getPos().y + shotBase.getSize().y;
-
+	// 敵の当たり判定
 	float enemyLeft = getPos().x + 20;
 	float enemyRight = getPos().x + getColSize().x;
 	float enemyTop = getPos().y + 20;
 	float enemyBottom = getPos().y + getColSize().y - 10;
-
-	//return true;
-
+	// 当たっていない処理
 	if (shotLeft > enemyRight)	return false;
 	if (shotRight < enemyLeft)	return false;
 	if (shotTop > enemyBottom)	return false;
 	if (shotBottom < enemyTop)	return false;
-
+	// 当たった処理
 	return true;
 }

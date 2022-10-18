@@ -1,7 +1,5 @@
 #include "DxLib.h"
-
 #include "game.h"
-
 #include "SceneManager.h"
 
 // ƒvƒƒOƒ‰ƒ€‚Í WinMain ‚©‚çn‚Ü‚è‚Ü‚·
