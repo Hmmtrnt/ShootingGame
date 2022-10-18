@@ -17,6 +17,7 @@ Player::Player()
 	m_Playerhandle = -1;
 	m_pMain = nullptr;
 	m_shotInterval = 0;
+	
 }
 
 Player::~Player()
@@ -37,6 +38,7 @@ void Player::init()
 	m_pos.y = Game::kScreenHeight / 2;
 	m_vec.y = 0.0f;
 	m_shotInterval = 0;
+	
 }
 
 void Player::update()

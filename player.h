@@ -33,6 +33,7 @@ private:
 	int m_Playerhandle;
 	// ’e‚Ì”­ŽËŠÔŠu
 	int m_shotInterval;
+
 	// SceneMain‚Ìƒ|ƒCƒ“ƒ^
 	SceneMain* m_pMain;
 

@@ -12,6 +12,7 @@ Enemy::Enemy()
 	m_pMain = nullptr;
 	m_isDead = false;
 	vecY = 0;
+	m_soundHandle = 0;
 }
 
 Enemy::~Enemy()
@@ -29,6 +30,7 @@ void Enemy::init()
 	m_colSize.x = 30;
 	m_colSize.y = 30;
 	vecY = m_speedY;
+	m_soundHandle = LoadSoundMem("sound/enemySound2.mp3");
 }
 
 void Enemy::setHandle(int handle)
@@ -46,11 +48,13 @@ void Enemy::update()
 	m_pos.y += vecY;
 	if (m_pos.y < 0)
 	{
+		PlaySoundMem(m_soundHandle, DX_PLAYTYPE_BACK);
 		m_speedY = m_speedRand;
 		vecY = m_speedY;
 	}
 	if (m_pos.y > Game::kScreenHeight - 30)
 	{
+		PlaySoundMem(m_soundHandle, DX_PLAYTYPE_BACK);
 		m_speedY = m_speedRand;
 		vecY = -m_speedY;
 	}

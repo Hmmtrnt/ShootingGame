@@ -43,6 +43,8 @@ private:
 	int m_enemyHandle;
 	// “G‚Ì‘¬‚³
 	int vecY;
+	// ‰¹‚Ìƒnƒ“ƒhƒ‹
+	int m_soundHandle;
 
 	// ¶€
 	bool m_isDead;
