@@ -6,10 +6,8 @@
 
 SceneResult::SceneResult()
 {
-	// 背景
-	m_hFieldHandle = 0;
-	// フォント
-	m_fontHandle = 0;
+	m_hFieldHandle = 0;		// 背景
+	m_fontHandle = 0;		// フォント
 }
 // 初期化
 void SceneResult::init()

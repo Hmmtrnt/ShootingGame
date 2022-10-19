@@ -24,7 +24,7 @@ namespace
 SceneMain::SceneMain()
 {
 	m_hPlayerGraphic = 0;		// プレイヤーのグラフィックハンドル
-	m_hShotGraphic = 0;		// ショットのグラフィックハンドル
+	m_hShotGraphic = 0;			// ショットのグラフィックハンドル
 	m_hFieldGraphic = 0;		// 背景のグラフィックハンドル
 	m_hEnemyGraphic = 0;		// 敵のグラフィックハンドル
 	m_fontHandle = 0;			// 文字のハンドル

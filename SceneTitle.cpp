@@ -6,22 +6,16 @@
 
 SceneTitle::SceneTitle()
 {
-	// 背景のグラフィックハンドル
-	m_hFieldGraphic = 0;
-	// フェード処理
-	m_fadeBright = 0;
-	// フェード速度
-	m_fadeSpeed = 0;
-	// 背景のグラフィックハンドル
-	m_fieldHandle = 0;
+	m_hFieldGraphic = 0;	// 背景のグラフィックハンドル
+	m_fadeBright = 0;		// フェード処理
+	m_fadeSpeed = 0;		// フェード速度
+	m_fieldHandle = 0;		// 背景のグラフィックハンドル
 }
 
 void SceneTitle::init()
 {
-	// フェード処理
-	m_fadeBright = 0;
-	// フェード速度
-	m_fadeSpeed = 5;
+	m_fadeBright = 0;	// フェード処理
+	m_fadeSpeed = 5;	// フェード速度
 	// 背景
 	m_hFieldGraphic = LoadGraph("data/field2.jpg");
 }
