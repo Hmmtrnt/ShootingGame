@@ -58,7 +58,7 @@ private:
 	/*表示位置*/
 	// プレイヤー
 	Vec2 m_posPlayer;
-	// 弾
+	// 弾の位置
 	Vec2 m_posShot;
 	// 弾の幅
 	Vec2 m_sizeShot;

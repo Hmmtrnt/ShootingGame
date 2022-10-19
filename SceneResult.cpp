@@ -48,6 +48,6 @@ void SceneResult::draw()
 	// 文字
 	DrawStringToHandle(Game::kScreenWidth / 2 - 170, Game::kScreenHeight / 2 - 100, "ＧＡＭＥＣＬＥＡＲ", GetColor(0, 0, 0), m_fontHandle);
 	DrawFormatString(Game::kScreenWidth / 2 - 140, Game::kScreenHeight / 2 + 120, GetColor(0, 0, 0), "主人公「これで安心して過ごせそうだ」");
-	DrawString(Game::kScreenWidth / 2 - 90, Game::kScreenHeight / 2, "１ボタン:　タイトル画面", GetColor(0, 0, 0));
-	DrawString(Game::kScreenWidth / 2 - 90, Game::kScreenHeight / 2 + 20, "２ボタン:リスタート画面", GetColor(0, 0, 0));
+	DrawString(Game::kScreenWidth / 2 - 90, Game::kScreenHeight / 2, "１ボタン:　タイトル", GetColor(0, 0, 0));
+	DrawString(Game::kScreenWidth / 2 - 90, Game::kScreenHeight / 2 + 20, "２ボタン:リスタート", GetColor(0, 0, 0));
 }

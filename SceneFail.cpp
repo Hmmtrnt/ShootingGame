@@ -86,6 +86,6 @@ void SceneFail::draw()
 	DrawFormatString(Game::kScreenWidth / 2 - 120, Game::kScreenHeight / 2 + 120, GetColor(0, 0, 0), "やつ「オレは生き残ったぞ！」");
 	DrawStringToHandle(Game::kScreenWidth / 2 - 160, Game::kScreenHeight / 2 - 100, "ＧＡＭＥＯＶＥＲ", GetColor(255, 0, 0), m_fontHandle);
 	DrawGraphF(m_pos.x, m_pos.y, m_enemyHandle, true);
-	DrawString(Game::kScreenWidth / 2 - 90, Game::kScreenHeight / 2, "１ボタン:　タイトル画面", GetColor(0, 0, 0));
-	DrawString(Game::kScreenWidth / 2 - 90, Game::kScreenHeight / 2 + 20, "２ボタン:リスタート画面", GetColor(0, 0, 0));
+	DrawString(Game::kScreenWidth / 2 - 90, Game::kScreenHeight / 2, "１ボタン:　タイトル", GetColor(0, 0, 0));
+	DrawString(Game::kScreenWidth / 2 - 90, Game::kScreenHeight / 2 + 20, "２ボタン:リスタート", GetColor(0, 0, 0));
 }
