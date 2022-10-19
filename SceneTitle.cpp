@@ -3,7 +3,6 @@
 #include "SceneTitle.h"
 #include "SceneMain.h"
 #include "SceneResult.h"
-#include "Pad.h"
 
 SceneTitle::SceneTitle()
 {
@@ -22,7 +21,7 @@ void SceneTitle::init()
 	// フェード処理
 	m_fadeBright = 0;
 	// フェード速度
-	m_fadeSpeed = 8;
+	m_fadeSpeed = 5;
 	// 背景
 	m_hFieldGraphic = LoadGraph("data/field2.jpg");
 }
@@ -56,7 +55,7 @@ SceneBase* SceneTitle::update()
 		// フェードアウト開始
 		if (padState & PAD_INPUT_1)
 		{
-			m_fadeSpeed = -8;
+			m_fadeSpeed = -5;
 		}
 	}
 	

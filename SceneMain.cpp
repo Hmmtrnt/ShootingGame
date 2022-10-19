@@ -6,7 +6,6 @@
 #include "SceneFail.h"
 #include "ShotNormal.h"
 #include "ShotBase.h"
-#include "Pad.h"
 #include <cassert>
 
 namespace
