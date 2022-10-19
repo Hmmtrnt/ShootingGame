@@ -51,14 +51,14 @@ void Enemy::update()
 	if (m_isDead)	return;
 	m_pos.y += vecY;
 	// ‰æ–Ê‚Ìˆê”Ôã‚És‚Á‚½‚Ìˆ—
-	if (m_pos.y < 0)
+	if (m_pos.y < -20)
 	{
 		PlaySoundMem(m_soundHandle, DX_PLAYTYPE_BACK);
 		m_speedY = m_speedRand;
 		vecY = m_speedY;
 	}
 	// ‰æ–Ê‚Ìˆê”Ô‰º‚És‚Á‚½‚Ìˆ—
-	if (m_pos.y > Game::kScreenHeight - getColSize().y)
+	if (m_pos.y > Game::kScreenHeight - getColSize().y + 10)
 	{
 		PlaySoundMem(m_soundHandle, DX_PLAYTYPE_BACK);
 		m_speedY = m_speedRand;
@@ -81,7 +81,7 @@ bool Enemy::isCol(ShotBase& shotBase)
 	float shotTop = shotBase.getPos().y - shotBase.getSize().y;
 	float shotBottom = shotBase.getPos().y + shotBase.getSize().y;
 	// “G‚Ì“–‚½‚è”»’è
-	float enemyLeft = getPos().x + 20;
+	float enemyLeft = getPos().x + 15;
 	float enemyRight = getPos().x + getColSize().x;
 	float enemyTop = getPos().y + 20;
 	float enemyBottom = getPos().y + getColSize().y - 10;
