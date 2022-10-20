@@ -4,6 +4,13 @@
 #include "SceneResult.h"
 #include "SceneTitle.h"
 
+namespace
+{
+	// フォント
+	constexpr int kSizeFont = 40;	// サイズ
+	constexpr int kThickFont = 3;	// 太さ
+}
+
 SceneResult::SceneResult()
 {
 	m_hFieldHandle = 0;		// 背景
@@ -15,13 +22,14 @@ void SceneResult::init()
 	// 背景データ
 	m_hFieldHandle = LoadGraph("data/field2.jpg");
 	// フォントデータ
-	m_fontHandle = CreateFontToHandle(NULL, 40, 3);
+	m_fontHandle = CreateFontToHandle(NULL, kSizeFont, kThickFont);
 }
 // 終了
 void SceneResult::end()
 {
-	// 背景メモリ消去
+	// グラフィックメモリ消去
 	DeleteGraph(m_hFieldHandle);
+	DeleteFontToHandle(m_fontHandle);
 }
 // 毎フレームの処理
 SceneBase* SceneResult::update()

@@ -6,6 +6,13 @@
 
 namespace
 {
+	// 敵の位置
+	constexpr int kPosEnemy = 80;
+	// 地面の高さ
+	constexpr int kFieldY = 400;
+	// フォント
+	constexpr int kSizeFont = 40;	// サイズ
+	constexpr int kThickFont = 3;	// 太さ
 	// 敵のジャンプ力
 	constexpr float kJumpEnemy = -15.0f;
 	// 敵の重力
@@ -23,7 +30,7 @@ SceneFail::SceneFail()
 	m_vec.y = 0;
 	m_size.x = 0;		// サイズ
 	m_size.y = 0;
-	m_fieldY = 400;		// 地面の高さ
+	m_fieldY = kFieldY;		// 地面の高さ
 }
 
 
@@ -31,10 +38,10 @@ void SceneFail::init()
 {
 	m_enemyHandle = LoadGraph("data/enemy2.png");		// 敵
 	m_fieldHandle = LoadGraph("data/field2.jpg");		// 背景
-	m_fontHandle = CreateFontToHandle(NULL, 40, 3);		// 文字
+	m_fontHandle = CreateFontToHandle(NULL, kSizeFont, kThickFont);		// 文字
 	GetGraphSizeF(m_enemyHandle, &m_size.x, &m_size.y);	// 敵のサイズ
 
-	m_pos.x = 80;		// 敵のX座標
+	m_pos.x = kPosEnemy;		// 敵のX座標
 	m_pos.y = m_fieldY;	// 敵のY座標
 }
 // 終了
@@ -43,6 +50,7 @@ void SceneFail::end()
 	// グラフィックメモリの消去
 	DeleteGraph(m_enemyHandle);
 	DeleteGraph(m_fieldHandle);
+	DeleteFontToHandle(m_fontHandle);
 }
 // 毎フレームの処理
 SceneBase* SceneFail::update()

@@ -1,7 +1,6 @@
 #include "DxLib.h"
 #include "game.h"
 #include "SceneMain.h"
-#include "SceneTitle.h"
 #include "SceneResult.h"
 #include "SceneFail.h"
 #include "ShotNormal.h"
@@ -11,14 +10,36 @@
 namespace
 {
 	// ƒvƒŒƒCƒ„[‚Ì•\Ž¦ˆÊ’u
-	constexpr float kPlayerX = 100.0f;
-	constexpr float kPlayerY = Game::kScreenHeight / 2;
+	constexpr float kPosPlayerX = 100.0f;
+	constexpr float kPosPlayerY = Game::kScreenHeight / 2;
 	// ’e‚Ì•\Ž¦ˆÊ’u
-	constexpr float kShotX = 0.0f;
-	constexpr float kShotY = 0.0f;
-	// ‘È‰~Œ`‚Ì‚»‚ê‚¼‚ê‚Ì”¼Œa
-	constexpr int kRadiusX = 7;
-	constexpr int kRadiusY = 4;
+	constexpr float kPosShotX = 0.0f;
+	constexpr float kPosShotY = 0.0f;
+	// ’e‚Ì•
+	constexpr float kSizeShotX = 10.0f;
+	constexpr float kSizeShotY = 10.0f;
+	// “G‚ÌˆÊ’u
+	constexpr float kPosEnemyX = 540.0f;
+	constexpr float kPosEnemyY = Game::kScreenWidth / 2;
+	// “G‚Ì•
+	constexpr float kSizeEnemyX = 30.0f;
+	constexpr float kSizeEnemyY = 30.0f;
+	// ƒtƒHƒ“ƒg
+	constexpr int kSizeFont = 50;	// ƒTƒCƒY
+	constexpr int kThickFont = 4;	// ‘¾‚³
+	// “G‚Ì”
+	constexpr int kEnemyNum = 1;
+	// ’e‚Ì”
+	constexpr int kShotNum = 3;
+	// ŽžŠÔ
+	constexpr int kTime = 40;
+	// ƒtƒF[ƒh
+	constexpr int kFadeBright = 0;		// ˆ—
+	constexpr int kFadeSpeed = 5;		// ‘¬“x
+	// •`‰æ‹P“x
+	constexpr int kRedBright = 255;		// Ô
+	constexpr int kGreenBright = 255;	// —Î
+	constexpr int kBlueBright = 255;	// Â
 }
 
 SceneMain::SceneMain()
@@ -31,6 +52,8 @@ SceneMain::SceneMain()
 	m_enemyNum = 0;				// “G‚Ì”
 	m_shotNum = 0;				// ’e‚Ì”
 	m_time = 0;					// ÅŒã‚Ìˆê”­‚ðŒ‚‚¿I‚í‚Á‚Ä‚©‚çƒQ[ƒ€ƒI[ƒo[‚Ü‚Å‚ÌŽžŠÔ
+	m_fadeBright = 0;
+	m_fadeSpeed = 0;
 }
 // ‰Šú‰»
 void SceneMain::init()
@@ -38,36 +61,39 @@ void SceneMain::init()
 
 	/*•\Ž¦ˆÊ’u*/
 	// ƒvƒŒƒCƒ„[
-	m_posPlayer.x = 100.0f;
-	m_posPlayer.y = Game::kScreenHeight / 2;
+	m_posPlayer.x = kPosPlayerX;
+	m_posPlayer.y = kPosPlayerY;
 	// ’e
-	m_posShot.x = 0.0f;
-	m_posShot.y = 0.0f;
+	m_posShot.x = kPosShotX;
+	m_posShot.y = kPosShotY;
 	// ’e‚Ì•
-	m_sizeShot.x = 10.0f;
-	m_sizeShot.y = 10.0f;
+	m_sizeShot.x = kSizeShotX;
+	m_sizeShot.y = kSizeShotY;
 	// “G
-	m_posEnemy.x = 540.0f;
-	m_posEnemy.y = Game::kScreenWidth / 2;
+	m_posEnemy.x = kPosEnemyX;
+	m_posEnemy.y = kPosEnemyY;
 	// “G‚Ì•
-	m_sizeEnemy.x = 30.0f;
-	m_sizeEnemy.y = 30.0f;
+	m_sizeEnemy.x = kSizeEnemyX;
+	m_sizeEnemy.y = kSizeEnemyY;
 	// ƒvƒŒƒCƒ„[
 	m_hPlayerGraphic = LoadGraph("data/player2.png");
 	// ’e
-	m_hShotGraphic = DrawBox(m_posShot.x, m_posShot.y, m_posShot.x + m_sizeShot.x, m_posShot.y + m_sizeShot.y, GetColor(255, 255, 255), true);
+	m_hShotGraphic = DrawBox((int)m_posShot.x, (int)m_posShot.y, (int)m_posShot.x + (int)m_sizeShot.x, (int)m_posShot.y + (int)m_sizeShot.y, GetColor(255, 255, 255), true);
 	// ”wŒi
 	m_hFieldGraphic = LoadGraph("data/field2.jpg");
 	// “G
 	m_hEnemyGraphic = LoadGraph("data/enemy2.png");
 	// •¶Žš
-	m_fontHandle = CreateFontToHandle(NULL, 50, 4);
+	m_fontHandle = CreateFontToHandle(NULL, kSizeFont, kThickFont);
 	// “G‚Ì”
-	m_enemyNum = 1;
+	m_enemyNum = kEnemyNum;
 	// ’e‚Ì”
-	m_shotNum = 3;
+	m_shotNum = kShotNum;
 	// ŽžŠÔ
-	m_time = 50;
+	m_time = kTime;
+	// ƒtƒF[ƒh
+	m_fadeBright = kFadeBright;	// ˆ—
+	m_fadeSpeed = kFadeSpeed;	// ‘¬“x
 
 	m_player.setHandle(m_hPlayerGraphic);
 	m_player.init();
@@ -85,6 +111,9 @@ void SceneMain::end()
 	DeleteGraph(m_hPlayerGraphic);
 	DeleteGraph(m_hShotGraphic);
 	DeleteGraph(m_hEnemyGraphic);
+	DeleteFontToHandle(m_fontHandle);
+	// •`‰æ‹P“x
+	SetDrawBright(kRedBright, kGreenBright, kBlueBright);
 	// Šm”Fˆ—
 	for (auto& pShot : m_pShotVt)
 	{
@@ -128,25 +157,54 @@ SceneBase* SceneMain::update()
 		it++;
 	}
 
-	// ƒV[ƒ“ˆÚ“®(—\’è‚Å‚Í“G‚É’e‚ª“–‚½‚Á‚½‚çƒŠƒUƒ‹ƒg)
-	if (m_enemyNum == 0)
+	// ƒtƒF[ƒhƒAƒEƒg‚Ìˆ—
+	m_fadeBright += m_fadeSpeed;
+	if (m_fadeBright >= 255)
 	{
-		return (new SceneResult);
+		m_fadeBright = 255;
+		m_fadeSpeed = 0;
 	}
-	else if (m_shotNum == 0)
+	if ((m_fadeBright <= 0) && (m_fadeSpeed < 0) && (m_enemyNum == 0))
 	{
-		// ’e‚ð‚·‚×‚ÄŒ‚‚¿I‚í‚Á‚½‚çŽžŠÔ‚ªŒ¸‚èƒQ[ƒ€ƒI[ƒo[‰æ–Ê‚Ö
-		m_time--;
-		if (m_time == 0)
+		m_fadeBright = 0;
+		return(new SceneResult);
+	}
+	else if ((m_fadeBright <= 0) && (m_fadeSpeed < 0) && (m_time == 0))
+	{
+		m_fadeBright = 0;
+		return(new SceneFail);
+	}
+
+	if (m_fadeSpeed == 0)
+	{
+		// ƒtƒF[ƒhƒAƒEƒgŠJŽn
+		if (m_time == 0 || m_enemyNum == 0)
 		{
-			return (new SceneFail);
+			m_fadeSpeed = -5;
 		}
 	}
+
+	// ƒV[ƒ“ˆÚ“®(—\’è‚Å‚Í“G‚É’e‚ª“–‚½‚Á‚½‚çƒŠƒUƒ‹ƒg)
+	//if (m_enemyNum == 0)
+	//{
+	//	return (new SceneResult);
+	//}
+	//else if (m_shotNum == 0)
+	//{
+	//	// ’e‚ð‚·‚×‚ÄŒ‚‚¿I‚í‚Á‚½‚çŽžŠÔ‚ªŒ¸‚èƒQ[ƒ€ƒI[ƒo[‰æ–Ê‚Ö
+	//	m_time--;
+	//	if (m_time == 0)
+	//	{
+	//		return (new SceneFail);
+	//	}
+	//}
 	return this;
 }
 
 void SceneMain::draw()
 {
+	// •`‰æ‹P“x
+	SetDrawBright(m_fadeBright, m_fadeBright, m_fadeBright);
 	// ”wŒi
 	DrawGraph(0, 0, m_hFieldGraphic, false);
 	m_enemy.draw();		// “G

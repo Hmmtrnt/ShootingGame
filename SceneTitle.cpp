@@ -2,20 +2,29 @@
 #include "game.h"
 #include "SceneTitle.h"
 #include "SceneMain.h"
-#include "SceneResult.h"
+
+namespace
+{
+	// フェード
+	constexpr int kFadeBright = 0;		// 処理
+	constexpr int kFadeSpeed = 5;		// 速度
+	// 描画輝度
+	constexpr int kRedBright = 255;		// 赤
+	constexpr int kGreenBright = 255;	// 緑
+	constexpr int kBlueBright = 255;	// 青
+}
 
 SceneTitle::SceneTitle()
 {
 	m_hFieldGraphic = 0;	// 背景のグラフィックハンドル
 	m_fadeBright = 0;		// フェード処理
 	m_fadeSpeed = 0;		// フェード速度
-	m_fieldHandle = 0;		// 背景のグラフィックハンドル
 }
 
 void SceneTitle::init()
 {
-	m_fadeBright = 0;	// フェード処理
-	m_fadeSpeed = 5;	// フェード速度
+	m_fadeBright = kFadeBright;	// フェード処理
+	m_fadeSpeed = kFadeSpeed;	// フェード速度
 	// 背景
 	m_hFieldGraphic = LoadGraph("data/field2.jpg");
 }
@@ -23,7 +32,7 @@ void SceneTitle::init()
 void SceneTitle::end()
 {
 	// 描画輝度
-	SetDrawBright(255, 255, 255);
+	SetDrawBright(kRedBright, kGreenBright, kBlueBright);
 	// グラフィックメモリから削除
 	DeleteGraph(m_hFieldGraphic);
 }

@@ -10,7 +10,7 @@ class Enemy
 {
 public:
 	Enemy();
-	virtual ~Enemy();
+	virtual ~Enemy() {}
 
 	// グラフィックデータ設定
 	void setHandle(int handle);
@@ -35,7 +35,7 @@ public:
 
 
 private:
-	// 敵のスピード
+	// 敵の初期スピード
 	int m_speedY;
 	// 敵のスピードの振れ幅
 	int m_speedRand;

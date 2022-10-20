@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Enemy.h"
 #include "ShotBase.h"
 
 class ShotNormal : public ShotBase

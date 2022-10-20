@@ -35,5 +35,4 @@ protected:
 	Vec2 m_vec;
 	// ’e‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©
 	bool m_isExist;
-	
 };

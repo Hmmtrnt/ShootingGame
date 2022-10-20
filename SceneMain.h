@@ -4,8 +4,6 @@
 #include "Enemy.h"
 #include "player.h"
 #include "SceneBase.h"
-#include "ShotBase.h"
-#include "ShotNormal.h"
 
 class SceneMain : public SceneBase
 {
@@ -44,15 +42,15 @@ private:
 	int m_shotNum;
 	// 最後の一発を撃ち終わってからゲームオーバーまでの時間
 	int m_time;
+	// フェード処理
+	int m_fadeBright;
+	// フェード速度
+	int m_fadeSpeed;
 
 	// プレイヤー
 	Player m_player;
 	// エネミー
 	Enemy m_enemy;
-	// ショットベース
-	ShotBase m_shotBase;
-	// ショットノーマル
-	ShotNormal m_shotNormal;
 	// ショット
 	std::vector<ShotBase*> m_pShotVt;
 	/*表示位置*/

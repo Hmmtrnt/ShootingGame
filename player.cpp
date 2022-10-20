@@ -6,6 +6,12 @@
 
 namespace
 {
+	// 自機の位置
+	constexpr float kPlayerPosX = 100.0f;
+	constexpr float kPlayerPosY = Game::kScreenHeight / 2;
+	// 自機の速度
+	constexpr float kPlayerVecY = 0.0f;
+
 	// Y方向の速度
 	constexpr float kSpeedMaxY = 8.0f;
 	// ショットの発射間隔
@@ -19,11 +25,6 @@ Player::Player()
 	m_shotInterval = 0;
 	
 }
-
-Player::~Player()
-{
-
-}
 // グラフィックデータ設定
 void Player::setHandle(int handle)
 {
@@ -34,9 +35,9 @@ void Player::setHandle(int handle)
 // 初期化
 void Player::init()
 {
-	m_pos.x = 100.0f;
-	m_pos.y = Game::kScreenHeight / 2;
-	m_vec.y = 0.0f;
+	m_pos.x = kPlayerPosX;
+	m_pos.y = kPlayerPosY;
+	m_vec.y = kPlayerVecY;
 	m_shotInterval = 0;
 	
 }
@@ -84,5 +85,5 @@ void Player::update()
 void Player::draw()
 {
 	// プレイヤーの表示
-	DrawTurnGraph(m_pos.x, m_pos.y, m_Playerhandle, true);
+	DrawTurnGraph((int)m_pos.x, (int)m_pos.y, m_Playerhandle, true);
 }

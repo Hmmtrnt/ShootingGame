@@ -1,8 +1,19 @@
 #include "DxLib.h"
 #include "Enemy.h"
 #include "game.h"
-#include "SceneResult.h"
 #include "ShotNormal.h"
+
+namespace
+{
+	// 敵の初期スピード
+	constexpr int kSpeedY = 25;
+	// 敵の位置座標
+	constexpr float kEnemyPosX = 500.0f;
+	constexpr float kEnemyPosY = Game::kScreenHeight / 2;
+	// 敵の移動速度
+	constexpr float kEnemyVecX = 0.0f;
+	constexpr float kEnemyVecY = 0.0f;
+}
 
 Enemy::Enemy()
 {
@@ -15,21 +26,16 @@ Enemy::Enemy()
 	m_soundHandle = 0;
 }
 
-Enemy::~Enemy()
-{
-
-}
-
 void Enemy::init()
 {
-	// スピードの変数
-	m_speedY = 25;
+	// 敵の初期スピードの変数
+	m_speedY = kSpeedY;
 	// 敵の位置
-	m_pos.x = 500.0f;
-	m_pos.y = Game::kScreenHeight / 2;
+	m_pos.x = kEnemyPosX;
+	m_pos.y = kEnemyPosY;
 	// 敵の移動速度
-	m_vec.x = 0.0f;
-	m_vec.y = 0.0f;
+	m_vec.x = kEnemyVecX;
+	m_vec.y = kEnemyVecY;
 	// スピードの代入先
 	vecY = m_speedY;
 	// 音のハンドル
@@ -70,7 +76,7 @@ void Enemy::draw()
 {
 	// 死亡
 	if (m_isDead)	return;
-	DrawTurnGraph(m_pos.x, m_pos.y, m_enemyHandle, true);
+	DrawTurnGraph((int)m_pos.x, (int)m_pos.y, m_enemyHandle, true);
 }
 // 敵と弾の当たり判定
 bool Enemy::isCol(ShotBase& shotBase)

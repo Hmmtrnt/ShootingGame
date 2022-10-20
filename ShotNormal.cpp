@@ -1,19 +1,19 @@
 #include "game.h"
 #include "ShotNormal.h"
-#include "SceneResult.h"
 
 namespace
 {
 	// 弾のスピード
-	constexpr float kShotSpeed = 25.0f;
+	constexpr float kShotSpeedX = 25.0f;
+	constexpr float kShotSpeedY = 0.0f;
 }
 // ショット開始
 void ShotNormal::start(Vec2 pos)
 {
 	ShotBase::start(pos);
 	// 弾の軌道
-	m_vec.x = kShotSpeed;
-	m_vec.y = 0.0f;
+	m_vec.x = kShotSpeedX;
+	m_vec.y = kShotSpeedY;
 }
 // 毎フレームの処理
 void ShotNormal::update()

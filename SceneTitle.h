@@ -16,14 +16,10 @@ public:
 	virtual void draw() override;
 	
 private:
-	//bool m_isEnd;
-
 	// 背景のグラフィックハンドル
 	int m_hFieldGraphic;
 	// フェード処理
 	int m_fadeBright;
 	// フェード速度
 	int m_fadeSpeed;
-	// 背景のグラフィックハンドル
-	int m_fieldHandle;
 };
