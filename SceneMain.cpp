@@ -211,8 +211,6 @@ void SceneMain::draw()
 	}
 	// ’e”•\¦
 	DrawFormatStringFToHandle(0, 0, GetColor(0, 0, 0), m_fontHandle, "’e:%d", m_shotNum);
-	// ŠÔŠm”F
-	//DrawFormatString(0, 50, GetColor(0, 0, 0), "ŠÔ:%d", m_time);
 }
 // ’e‚Ì¶¬
 bool SceneMain::createShotNormal(Vec2 pos)

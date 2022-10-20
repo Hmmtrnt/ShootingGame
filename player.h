@@ -30,7 +30,6 @@ private:
 	// 弾の発射間隔
 	int m_shotInterval;
 	
-
 	// SceneMainのポインタ
 	SceneMain* m_pMain;
 
@@ -42,4 +41,6 @@ private:
 	Vec2 m_size;
 	// ゲージのサイズ
 	Vec2 m_gangeSize;
+	// ゲージの表示位置
+	Vec2 m_posGange;
 };

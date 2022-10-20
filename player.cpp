@@ -20,6 +20,9 @@ namespace
 	// ゲージのサイズ
 	constexpr int kGangeSizeX = kShotInterval;
 	constexpr int kGangeSizeY = 20;
+	// ゲージの表示位置
+	constexpr int kGangePosX = 15;
+	constexpr int kGangePosY = 70;
 }
 
 Player::Player()
@@ -44,6 +47,8 @@ void Player::init()
 	m_shotInterval = 0;
 	m_gangeSize.x = kGangeSizeX;
 	m_gangeSize.y = kGangeSizeY;
+	m_posGange.x = kGangePosX;
+	m_posGange.y = kGangePosY;
 }
 // 毎フレームの処理
 void Player::update()
@@ -101,10 +106,7 @@ void Player::draw()
 {
 	// プレイヤーの表示
 	DrawTurnGraph((int)m_pos.x, (int)m_pos.y, m_PlayerHandle, true);
-	DrawBox((int)m_pos.x + 15, (int)m_pos.y + 70, 
-			(int)m_pos.x + 15 + m_gangeSize.x, (int)m_pos.y + 70 + m_gangeSize.y,
-			GetColor(0, 255, 0), true);
-	DrawBox((int)m_pos.x + 15, (int)m_pos.y + 70, 
-			(int)m_pos.x + 85, (int)m_pos.y + 90, 
-			GetColor(0, 0, 0), false);
+	DrawBox((int)m_posGange.x, (int)m_posGange.y, (int)m_posGange.x + (int)m_gangeSize.x, (int)m_posGange.y + (int)m_gangeSize.y, GetColor(0, 255, 0), true);
+	DrawBox((int)m_posGange.x, (int)m_posGange.y, (int)m_posGange.x + 70, (int)m_posGange.y + 20,	GetColor(0, 0, 0), false);
+	DrawString(0, 100, "インターバル", GetColor(0, 0, 0));
 }

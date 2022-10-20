@@ -119,14 +119,18 @@ SceneBase* SceneFail::update()
 		}
 	}
 
-	if (Pad::isTrigger(PAD_INPUT_1))
+	if (m_fadeBright == 255)
 	{
-		m_input1++;
+		if (Pad::isTrigger(PAD_INPUT_1))
+		{
+			m_input1++;
+		}
+		if (Pad::isTrigger(PAD_INPUT_2))
+		{
+			m_input2++;
+		}
 	}
-	if (Pad::isTrigger(PAD_INPUT_2))
-	{
-		m_input2++;
-	}
+	
 
 	return this;
 }

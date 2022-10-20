@@ -37,8 +37,8 @@ void SceneResult::init()
 	m_fontHandle = CreateFontToHandle(NULL, kSizeFont, kThickFont);
 	m_fadeBright = kFadeBright;	// フェード処理
 	m_fadeSpeed = kFadeSpeed;	// フェード速度
-	m_input1 = 0;			// 入力情報１
-	m_input2 = 0;			// 入力情報２
+	m_input1 = 0;				// 入力情報１
+	m_input2 = 0;				// 入力情報２
 }
 // 終了
 void SceneResult::end()
@@ -78,26 +78,19 @@ SceneBase* SceneResult::update()
 			m_fadeSpeed = -kFadeSpeed;
 		}
 	}
-
-	if (Pad::isTrigger(PAD_INPUT_1))
+	if (m_fadeBright == 255)
 	{
-		m_input1++;
+		if (Pad::isTrigger(PAD_INPUT_1))
+		{
+			m_input1++;
+		}
+		if (Pad::isTrigger(PAD_INPUT_2))
+		{
+			m_input2++;
+		}
 	}
-	if (Pad::isTrigger(PAD_INPUT_2))
-	{
-		m_input2++;
-	}
+	
 
-	//int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-	//if (padState & PAD_INPUT_1)
-	//{
-	//	return (new SceneTitle);
-	//}
-	//if (padState & PAD_INPUT_2)
-	//{
-	//	return (new SceneMain);
-	//}
-	//
 	return this;
 }
 // 描画
