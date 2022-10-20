@@ -81,6 +81,7 @@ void Enemy::draw()
 // “G‚Æ’e‚Ì“–‚½‚è”»’è
 bool Enemy::isCol(ShotBase& shotBase)
 {
+	if (isDead()) return false;
 	// ’e‚Ì“–‚½‚è”»’è
 	float shotLeft = shotBase.getPos().x - shotBase.getSize().x;
 	float shotRight = shotBase.getPos().x + shotBase.getSize().x;

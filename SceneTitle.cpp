@@ -23,10 +23,10 @@ SceneTitle::SceneTitle()
 
 void SceneTitle::init()
 {
-	m_fadeBright = kFadeBright;	// フェード処理
-	m_fadeSpeed = kFadeSpeed;	// フェード速度
 	// 背景
 	m_hFieldGraphic = LoadGraph("data/field2.jpg");
+	m_fadeBright = kFadeBright;	// フェード処理
+	m_fadeSpeed = kFadeSpeed;	// フェード速度
 }
 
 void SceneTitle::end()
@@ -58,7 +58,7 @@ SceneBase* SceneTitle::update()
 		// フェードアウト開始
 		if (padState & PAD_INPUT_1)
 		{
-			m_fadeSpeed = -5;
+			m_fadeSpeed = -kFadeSpeed;
 		}
 	}
 	

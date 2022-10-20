@@ -21,4 +21,11 @@ private:
 	int m_hFieldHandle;
 	// 文字のグラフィックハンドル
 	int m_fontHandle;
+	// フェード処理
+	int m_fadeBright;
+	// フェード速度
+	int m_fadeSpeed;
+	// 入力情報
+	int m_input1;
+	int m_input2;
 };

@@ -124,7 +124,7 @@ void SceneMain::end()
 }
 // 毎フレームの処理
 SceneBase* SceneMain::update()
-{
+{	
 	m_enemy.update();
 	m_player.update();
 	// ベクター処理
@@ -164,12 +164,12 @@ SceneBase* SceneMain::update()
 		m_fadeBright = 255;
 		m_fadeSpeed = 0;
 	}
-	if ((m_fadeBright <= 0) && (m_fadeSpeed < 0) && (m_enemyNum == 0))
+	if (m_fadeBright <= 0 && m_fadeSpeed < 0 && m_enemyNum == 0)
 	{
 		m_fadeBright = 0;
 		return(new SceneResult);
 	}
-	else if ((m_fadeBright <= 0) && (m_fadeSpeed < 0) && (m_time == 0))
+	if (m_fadeBright <= 0 && m_fadeSpeed < 0 && m_time == 0)
 	{
 		m_fadeBright = 0;
 		return(new SceneFail);
@@ -178,26 +178,20 @@ SceneBase* SceneMain::update()
 	if (m_fadeSpeed == 0)
 	{
 		// フェードアウト開始
-		if (m_time == 0 || m_enemyNum == 0)
+		if (m_enemyNum == 0)
 		{
 			m_fadeSpeed = -5;
 		}
+		if (m_shotNum == 0)
+		{
+			m_time--;
+			if (m_time == 0)
+			{
+				m_fadeSpeed = -5;
+			}
+		}
 	}
 
-	// シーン移動(予定では敵に弾が当たったらリザルト)
-	//if (m_enemyNum == 0)
-	//{
-	//	return (new SceneResult);
-	//}
-	//else if (m_shotNum == 0)
-	//{
-	//	// 弾をすべて撃ち終わったら時間が減りゲームオーバー画面へ
-	//	m_time--;
-	//	if (m_time == 0)
-	//	{
-	//		return (new SceneFail);
-	//	}
-	//}
 	return this;
 }
 
@@ -217,6 +211,8 @@ void SceneMain::draw()
 	}
 	// 弾数表示
 	DrawFormatStringFToHandle(0, 0, GetColor(0, 0, 0), m_fontHandle, "弾:%d", m_shotNum);
+	// 時間確認
+	DrawFormatString(0, 50, GetColor(0, 0, 0), "時間:%d", m_time);
 }
 // 弾の生成
 bool SceneMain::createShotNormal(Vec2 pos)

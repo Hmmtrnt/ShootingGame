@@ -33,6 +33,8 @@ public:
 	// サイズの取得
 	Vec2 getColSize() const { return m_size; }
 
+	// 死んだ箱の座標
+	bool isDead() const { return m_isDead; }
 
 private:
 	// 敵の初期スピード
