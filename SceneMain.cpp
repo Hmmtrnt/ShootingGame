@@ -52,8 +52,8 @@ SceneMain::SceneMain()
 	m_enemyNum = 0;				// 敵の数
 	m_shotNum = 0;				// 弾の数
 	m_time = 0;					// 最後の一発を撃ち終わってからゲームオーバーまでの時間
-	m_fadeBright = 0;
-	m_fadeSpeed = 0;
+	m_fadeBright = 0;			// フェード処理
+	m_fadeSpeed = 0;			// フェード速度
 }
 // 初期化
 void SceneMain::init()
