@@ -35,7 +35,7 @@ namespace
 	constexpr int kTime = 40;
 	// フェード
 	constexpr int kFadeBright = 0;		// 処理
-	constexpr int kFadeSpeed = 5;		// 速度
+	constexpr int kFadeSpeed = 20;		// 速度
 	// 描画輝度
 	constexpr int kRedBright = 255;		// 赤
 	constexpr int kGreenBright = 255;	// 緑
@@ -180,14 +180,14 @@ SceneBase* SceneMain::update()
 		// フェードアウト開始
 		if (m_enemyNum == 0)
 		{
-			m_fadeSpeed = -5;
+			m_fadeSpeed = -kFadeSpeed;
 		}
 		if (m_shotNum == 0)
 		{
 			m_time--;
 			if (m_time == 0)
 			{
-				m_fadeSpeed = -5;
+				m_fadeSpeed = -kFadeSpeed;
 			}
 		}
 	}
