@@ -3,6 +3,7 @@
 #include "player.h"
 #include "game.h"
 #include "SceneMain.h"
+#include "Pad.h"
 
 namespace
 {
@@ -16,21 +17,23 @@ namespace
 	constexpr float kSpeedMaxY = 8.0f;
 	// ショットの発射間隔
 	constexpr int kShotInterval = 70;
+	// ゲージのサイズ
+	constexpr int kGangeSizeX = kShotInterval;
+	constexpr int kGangeSizeY = 20;
 }
 
 Player::Player()
 {
-	m_Playerhandle = -1;
+	m_PlayerHandle = 0;
 	m_pMain = nullptr;
 	m_shotInterval = 0;
-	
 }
 // グラフィックデータ設定
 void Player::setHandle(int handle)
 {
-	m_Playerhandle = handle;
+	m_PlayerHandle = handle;
 
-	GetGraphSizeF(m_Playerhandle, &m_size.x, &m_size.y);
+	GetGraphSizeF(m_PlayerHandle, &m_size.x, &m_size.y);
 }
 // 初期化
 void Player::init()
@@ -39,22 +42,34 @@ void Player::init()
 	m_pos.y = kPlayerPosY;
 	m_vec.y = kPlayerVecY;
 	m_shotInterval = 0;
-	
+	m_gangeSize.x = kGangeSizeX;
+	m_gangeSize.y = kGangeSizeY;
 }
 // 毎フレームの処理
 void Player::update()
 {
 	// パッドからの入力状態取得
 	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-
+	if (m_gangeSize.x < 70)
+	{
+		m_gangeSize.x++;
+	}
 	// ショットを撃つ処理
 	m_shotInterval--;
 	if (m_shotInterval < 0) m_shotInterval = 0;
 
 	if (m_shotInterval <= 0)
 	{
-		if (padState & PAD_INPUT_1)
+		
+		if (Pad::isTrigger(PAD_INPUT_1))
 		{
+			m_gangeSize.x = 0;
+			
+			
+			if (m_gangeSize.x == 70)
+			{
+				m_gangeSize.x = 70;
+			}
 			// ショットのインターバル
 			if (m_pMain->createShotNormal(getPos()))
 			{
@@ -85,5 +100,11 @@ void Player::update()
 void Player::draw()
 {
 	// プレイヤーの表示
-	DrawTurnGraph((int)m_pos.x, (int)m_pos.y, m_Playerhandle, true);
+	DrawTurnGraph((int)m_pos.x, (int)m_pos.y, m_PlayerHandle, true);
+	DrawBox((int)m_pos.x + 15, (int)m_pos.y + 70, 
+			(int)m_pos.x + 15 + m_gangeSize.x, (int)m_pos.y + 70 + m_gangeSize.y,
+			GetColor(0, 255, 0), true);
+	DrawBox((int)m_pos.x + 15, (int)m_pos.y + 70, 
+			(int)m_pos.x + 85, (int)m_pos.y + 90, 
+			GetColor(0, 0, 0), false);
 }

@@ -12,16 +12,12 @@ public:
 
 	// グラフィックデータ設定
 	void setHandle(int handle);
-
 	// プレイヤーの初期化
 	void init();
-
 	// SceneMainクラスのポインタ設定
 	void setMain(SceneMain* pMain) { m_pMain = pMain; }
-
 	// 処理
 	void update();
-
 	// 描画
 	void draw();
 
@@ -30,9 +26,10 @@ public:
 
 private:
 	//グラフィックハンドル
-	int m_Playerhandle;
+	int m_PlayerHandle;
 	// 弾の発射間隔
 	int m_shotInterval;
+	
 
 	// SceneMainのポインタ
 	SceneMain* m_pMain;
@@ -43,4 +40,6 @@ private:
 	Vec2 m_vec;
 	// プレイヤーグラフィックの幅
 	Vec2 m_size;
+	// ゲージのサイズ
+	Vec2 m_gangeSize;
 };

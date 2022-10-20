@@ -4,6 +4,7 @@
 #include "SceneMain.h"
 #include "SceneResult.h"
 #include "SceneFail.h"
+#include "Pad.h"
 
 SceneManager::SceneManager()
 {
@@ -28,6 +29,7 @@ void SceneManager::end()
 // 毎フレームの処理
 void SceneManager::update()
 {
+	Pad::update();
 	// 確認処理
 	assert(m_pScene);
 	if (!m_pScene)	return;

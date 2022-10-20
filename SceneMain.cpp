@@ -44,10 +44,10 @@ namespace
 
 SceneMain::SceneMain()
 {
-	m_hPlayerGraphic = 0;		// プレイヤーのグラフィックハンドル
-	m_hShotGraphic = 0;			// ショットのグラフィックハンドル
-	m_hFieldGraphic = 0;		// 背景のグラフィックハンドル
-	m_hEnemyGraphic = 0;		// 敵のグラフィックハンドル
+	m_hPlayerGraphic = 0;		// プレイヤーのハンドル
+	m_hShotGraphic = 0;			// ショットのハンドル
+	m_hFieldGraphic = 0;		// 背景のハンドル
+	m_hEnemyGraphic = 0;		// 敵のハンドル
 	m_fontHandle = 0;			// 文字のハンドル
 	m_enemyNum = 0;				// 敵の数
 	m_shotNum = 0;				// 弾の数
@@ -212,7 +212,7 @@ void SceneMain::draw()
 	// 弾数表示
 	DrawFormatStringFToHandle(0, 0, GetColor(0, 0, 0), m_fontHandle, "弾:%d", m_shotNum);
 	// 時間確認
-	DrawFormatString(0, 50, GetColor(0, 0, 0), "時間:%d", m_time);
+	//DrawFormatString(0, 50, GetColor(0, 0, 0), "時間:%d", m_time);
 }
 // 弾の生成
 bool SceneMain::createShotNormal(Vec2 pos)

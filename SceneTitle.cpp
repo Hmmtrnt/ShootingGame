@@ -2,6 +2,7 @@
 #include "game.h"
 #include "SceneTitle.h"
 #include "SceneMain.h"
+#include "Pad.h"
 
 namespace
 {
@@ -52,11 +53,10 @@ SceneBase* SceneTitle::update()
 		return(new SceneMain);
 	}
 
-	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
 	if (m_fadeSpeed == 0)
 	{
 		// フェードアウト開始
-		if (padState & PAD_INPUT_1)
+		if (Pad::isTrigger(PAD_INPUT_1))
 		{
 			m_fadeSpeed = -kFadeSpeed;
 		}

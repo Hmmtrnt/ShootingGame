@@ -3,6 +3,7 @@
 #include "SceneMain.h"
 #include "SceneFail.h"
 #include "SceneTitle.h"
+#include "Pad.h"
 
 namespace
 {
@@ -112,31 +113,21 @@ SceneBase* SceneFail::update()
 	if (m_fadeSpeed == 0)
 	{
 		// フェードアウト開始
-		if (padState & PAD_INPUT_1 || padState & PAD_INPUT_2)
+		if (Pad::isTrigger(PAD_INPUT_1) || Pad::isTrigger(PAD_INPUT_2))
 		{
 			m_fadeSpeed = -kFadeSpeed;
 		}
 	}
 
-	if (padState & PAD_INPUT_1)
+	if (Pad::isTrigger(PAD_INPUT_1))
 	{
 		m_input1++;
 	}
-	if (padState & PAD_INPUT_2)
+	if (Pad::isTrigger(PAD_INPUT_2))
 	{
 		m_input2++;
 	}
 
-	//if (padState & PAD_INPUT_1)
-	//{
-	//	// タイトル
-	//	return (new SceneTitle);
-	//}
-	//if (padState & PAD_INPUT_2)
-	//{
-	//	// メイン
-	//	return (new SceneMain);
-	//}
 	return this;
 }
 
