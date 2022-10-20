@@ -59,12 +59,12 @@ SceneBase* SceneResult::update()
 		m_fadeBright = 255;
 		m_fadeSpeed = 0;
 	}
-	if (m_fadeBright <= 0 && m_fadeSpeed < 0 && padState & PAD_INPUT_1)
+	if (m_fadeBright <= 0 && m_fadeSpeed < 0 && m_input1 > 0)
 	{
 		m_fadeBright = 0;
 		return(new SceneTitle);
 	}
-	if (m_fadeBright <= 0 && m_fadeSpeed < 0 && padState & PAD_INPUT_2)
+	if (m_fadeBright <= 0 && m_fadeSpeed < 0 && m_input2 > 0)
 	{
 		m_fadeBright = 0;
 		return(new SceneMain);
@@ -77,6 +77,15 @@ SceneBase* SceneResult::update()
 		{
 			m_fadeSpeed = -kFadeSpeed;
 		}
+	}
+
+	if (padState & PAD_INPUT_1)
+	{
+		m_input1++;
+	}
+	if (padState & PAD_INPUT_2)
+	{
+		m_input2++;
 	}
 
 	//int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);

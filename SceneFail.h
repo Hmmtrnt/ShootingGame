@@ -22,6 +22,13 @@ private:
 	int m_enemyHandle;
 	// 文字のフォントデータ
 	int m_fontHandle;
+	// フェード処理
+	int m_fadeBright;
+	// フェード速度
+	int m_fadeSpeed;
+	// 入力情報
+	int m_input1;
+	int m_input2;
 
 	// 地面の高さ
 	float m_fieldY;

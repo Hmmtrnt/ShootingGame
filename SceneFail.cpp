@@ -17,6 +17,13 @@ namespace
 	constexpr float kJumpEnemy = -15.0f;
 	// 敵の重力
 	constexpr float kGravity = 1.0f;
+	// フェード
+	constexpr int kFadeBright = 0;		// 処理
+	constexpr int kFadeSpeed = 5;		// 速度
+	// 描画輝度
+	constexpr int kRedBright = 255;		// 赤
+	constexpr int kGreenBright = 255;	// 緑
+	constexpr int kBlueBright = 255;	// 青
 }
 
 SceneFail::SceneFail()
@@ -24,6 +31,10 @@ SceneFail::SceneFail()
 	m_fieldHandle = 0;	// 背景
 	m_enemyHandle = 0;	// 敵
 	m_fontHandle = 0;	// 文字
+	m_fadeBright = 0;	// フェード処理
+	m_fadeSpeed = 0;	// フェード速度
+	m_input1 = 0;		// 入力情報１
+	m_input2 = 0;		// 入力情報２
 	m_pos.x = 0;		// 表示位置
 	m_pos.y = 0;
 	m_vec.x = 0;		// 移動速度
@@ -39,6 +50,11 @@ void SceneFail::init()
 	m_enemyHandle = LoadGraph("data/enemy2.png");		// 敵
 	m_fieldHandle = LoadGraph("data/field2.jpg");		// 背景
 	m_fontHandle = CreateFontToHandle(NULL, kSizeFont, kThickFont);		// 文字
+	m_fadeBright = kFadeBright;	// フェード処理
+	m_fadeSpeed = kFadeSpeed;	// フェード速度
+	m_input1 = 0;			// 入力情報１
+	m_input2 = 0;			// 入力情報２
+	
 	GetGraphSizeF(m_enemyHandle, &m_size.x, &m_size.y);	// 敵のサイズ
 
 	m_pos.x = kPosEnemy;		// 敵のX座標
@@ -51,6 +67,8 @@ void SceneFail::end()
 	DeleteGraph(m_enemyHandle);
 	DeleteGraph(m_fieldHandle);
 	DeleteFontToHandle(m_fontHandle);
+	// 描画輝度
+	SetDrawBright(kRedBright, kGreenBright, kBlueBright);
 }
 // 毎フレームの処理
 SceneBase* SceneFail::update()
@@ -73,21 +91,59 @@ SceneBase* SceneFail::update()
 	m_vec.y += kGravity;
 
 	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+	// フェードアウトの処理
+	m_fadeBright += m_fadeSpeed;
+	if (m_fadeBright >= 255)
+	{
+		m_fadeBright = 255;
+		m_fadeSpeed = 0;
+	}
+	if (m_fadeBright <= 0 && m_fadeSpeed < 0 && m_input1 > 0)
+	{
+		m_fadeBright = 0;
+		return(new SceneTitle);
+	}
+	if (m_fadeBright <= 0 && m_fadeSpeed < 0 && m_input2 > 0)
+	{
+		m_fadeBright = 0;
+		return(new SceneMain);
+	}
+
+	if (m_fadeSpeed == 0)
+	{
+		// フェードアウト開始
+		if (padState & PAD_INPUT_1 || padState & PAD_INPUT_2)
+		{
+			m_fadeSpeed = -kFadeSpeed;
+		}
+	}
+
 	if (padState & PAD_INPUT_1)
 	{
-		// タイトル
-		return (new SceneTitle);
+		m_input1++;
 	}
 	if (padState & PAD_INPUT_2)
 	{
-		// メイン
-		return (new SceneMain);
+		m_input2++;
 	}
+
+	//if (padState & PAD_INPUT_1)
+	//{
+	//	// タイトル
+	//	return (new SceneTitle);
+	//}
+	//if (padState & PAD_INPUT_2)
+	//{
+	//	// メイン
+	//	return (new SceneMain);
+	//}
 	return this;
 }
 
 void SceneFail::draw()
 {
+	// 描画輝度
+	SetDrawBright(m_fadeBright, m_fadeBright, m_fadeBright);
 	// 背景
 	DrawGraphF(0, 0, m_fieldHandle, true);
 	// テキスト
