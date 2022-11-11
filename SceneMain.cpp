@@ -35,7 +35,7 @@ namespace
 	constexpr int kTime = 40;
 	// フェード
 	constexpr int kFadeBright = 0;		// 処理
-	constexpr int kFadeSpeed = 20;		// 速度
+	constexpr int kFadeSpeed = 30;		// 速度
 	// 描画輝度
 	constexpr int kRedBright = 255;		// 赤
 	constexpr int kGreenBright = 255;	// 緑
